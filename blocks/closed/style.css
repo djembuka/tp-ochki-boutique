@@ -29,6 +29,15 @@
   line-height: 24px;
   padding-top: 16px;
 }
+.twpx-action-card__title a {
+  text-decoration: none;
+  color: #000;
+  -webkit-transition: 0.2s color ease-in-out;
+  transition: 0.2s color ease-in-out;
+}
+.twpx-action-card__title a:hover {
+  color: #3498db;
+}
 .twpx-action-card__text {
   color: #000;
   font-family: Roboto;
