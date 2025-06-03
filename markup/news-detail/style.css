@@ -1,0 +1,137 @@
+.twpx-article-detail {
+  display: grid;
+  grid-template-columns: 70% calc(30% - 30px);
+  gap: 30px;
+}
+
+.twpx-article-detail__content {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.twpx-article-detail__content h1 {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 36px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.twpx-article-detail__content h2 {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 28px;
+  color: #000000;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.twpx-article-detail__content p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.twpx-article-detail__content picture {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.twpx-article-detail__content picture img,
+.twpx-article-detail__content img.img-fluid {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.twpx-article-detail__products {
+  display: grid;
+  grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+  gap: 16px;
+}
+
+.twpx-article-detail__products-item {
+  padding-top: 100%;
+  position: relative;
+  display: block;
+}
+
+.twpx-article-detail__products-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+}
+
+.twpx-article-detail__others {
+  display: grid;
+  grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+  gap: 16px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #707070;
+}
+
+.twpx-article-detail__others-item {
+  display: block;
+  text-decoration: none;
+}
+
+.twpx-article-detail__others-img {
+  display: block;
+  padding-top: 50%;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.twpx-article-detail__others-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+}
+
+.twpx-article-detail__others-title {
+  font-size: 24px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  line-height: 1.3;
+  color: #000000;
+}
+  
+.twpx-article-detail__content hr {
+  border: none;
+}
+
+@media(max-width: 767px) {
+  .twpx-article-detail {
+    display: block;
+  }
+  
+  .twpx-article-detail__content {
+    font-size: 16px;
+  }
+
+  .twpx-article-detail__content h1 {
+    font-size: 24px;
+  }
+
+  .twpx-article-detail__content h2 {
+    font-size: 22px;
+  }
+  
+  .twpx-article-detail__products,
+  .twpx-article-detail__others {
+    gap: 8px;
+  }
+  
+  .twpx-article-detail__others-img {
+    margin-bottom: 16px;
+  }
+  
+  .twpx-article-detail__others-title {
+    font-size: 16px;
+  }
+}

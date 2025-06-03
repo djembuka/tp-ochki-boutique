@@ -1,0 +1,205 @@
+#elementZoomGallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: contain;
+  background-position: center;
+}
+
+.detail-gallery {
+  height: 500px;
+  width: calc(100% - 24px * 2);
+  overflow: hidden;
+}
+
+.detail-gallery .swiper-slide img {
+  cursor: zoom-in;
+}
+
+.detail-gallery-thumbs {
+  box-sizing: border-box;
+  padding: 10px 0;
+  width: 70%;
+}
+
+.detail-gallery-thumbs .swiper-slide {
+  height: 50px;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.detail-gallery-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+/*Zoom gallery*/
+#elementZoomGallery {
+  -webkit-transform: scale(.9);
+  transform: scale(.9);
+  opacity: 0;
+  z-index: -1;
+}
+#elementZoomGallery.zoom--show {
+  -webkit-transition: opacity 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  z-index: 1000;
+}
+#elementZoomGallery .detail-zoom-gallery {
+  height: calc(100vh - 100px);
+  border-bottom: 1px solid rgb(231, 232, 234);
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-slide {
+  cursor: move;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-next,
+#elementZoomGallery .detail-zoom-gallery .swiper-button-prev {
+  transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  height: 110px;
+  width: 57px;
+  left: 24px;
+  top: 50%;
+  background: url(/local/components/dresscode/catalog.item/templates/detail/images/carouselArrowsBig.png) 0 0 no-repeat transparent;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-next:after,
+#elementZoomGallery .detail-zoom-gallery .swiper-button-prev:after {
+  display: none;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-next {
+  left: auto;
+  right: 24px;
+  background-position: -57px 0;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-next:hover,
+#elementZoomGallery .detail-zoom-gallery .swiper-button-prev:hover {
+  opacity: 0.8;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-prev:active {
+  left: 23px !important;
+}
+#elementZoomGallery .detail-zoom-gallery .swiper-button-next:active {
+  right: 23px !important;
+}
+
+/*Zoom thumbs*/
+#elementZoomGallery .detail-zoom-gallery-thumbs-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: calc(80px * 4 + 12px * 3);
+  height: 100px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 15;
+}
+#elementZoomGallery .detail-zoom-gallery-thumbs {
+  width: 100%;
+  height: 100px;
+}
+#elementZoomGallery .detail-zoom-gallery-thumbs .swiper-slide {
+  opacity: .6;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+}
+#elementZoomGallery .detail-zoom-gallery-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+#elementZoomGalleryThumbsNext,
+#elementZoomGalleryThumbsPrev {
+  transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  height: 60px;
+  width: 80px;
+  left: -80px;
+  top: 50%;
+  background: url(/local/components/dresscode/catalog.item/templates/detail/images/carouselArrows.png) 0 0 no-repeat transparent;
+  opacity: 0.5;
+  margin-top: 0;
+  z-index: 10;
+}
+#elementZoomGalleryThumbsNext:after,
+#elementZoomGalleryThumbsPrev:after {
+  display: none;
+}
+#elementZoomGalleryThumbsNext {
+  left: auto;
+  right: -80px;
+  background-position: -80px 0;
+}
+#elementZoomGalleryThumbsNext:hover,
+#elementZoomGalleryThumbsPrev:hover {
+  opacity: 0.8;
+}
+#elementZoomGalleryThumbsPrev:active {
+  left: -81px !important;
+}
+#elementZoomGalleryThumbsNext:active {
+  right: -81px !important;
+}
+
+/*Zoom close*/
+.detail-zoom-gallery-close {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  background: url(/local/components/dresscode/catalog.item/templates/detail/images/exitBig.png) 0 0 no-repeat transparent;
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+.detail-zoom-gallery-close:hover {
+    opacity: 0.8;
+}
+.detail-zoom-gallery-close:active {
+  transform: scale(.97);
+  opacity: 1;
+}
+
+@media(max-width: 800px) {
+  #elementZoomGallery .detail-zoom-gallery-thumbs-wrapper,
+  #elementZoomGallery .detail-zoom-gallery .swiper-button-next,
+  #elementZoomGallery .detail-zoom-gallery .swiper-button-prev  {
+    display: none;
+  }
+  
+  #elementZoomGallery .detail-zoom-gallery {
+    height: 100vh;
+    border-bottom: none;
+  }
+}

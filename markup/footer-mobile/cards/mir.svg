@@ -1,0 +1,26 @@
+<svg id="Сгруппировать_46" data-name="Сгруппировать 46" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="20.206" viewBox="0 0 70 20.206">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Прямоугольник_14" data-name="Прямоугольник 14" width="70" height="20.206" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Прямоугольник_12" data-name="Прямоугольник 12" width="20.639" height="8.66" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Сгруппировать_45" data-name="Сгруппировать 45" clip-path="url(#clip-path)">
+    <g id="Сгруппировать_44" data-name="Сгруппировать 44" transform="translate(0 0)">
+      <g id="Сгруппировать_43" data-name="Сгруппировать 43" clip-path="url(#clip-path)">
+        <g id="Сгруппировать_42" data-name="Сгруппировать 42" transform="translate(49.361 0)" opacity="0.7">
+          <g id="Сгруппировать_41" data-name="Сгруппировать 41" transform="translate(0 0)">
+            <g id="Сгруппировать_40" data-name="Сгруппировать 40" clip-path="url(#clip-path-3)">
+              <path id="Контур_51" data-name="Контур 51" d="M144.292,0H130.869c.722,4.474,5.052,8.66,9.815,8.66h10.68a4.9,4.9,0,0,0,.144-1.443A7.146,7.146,0,0,0,144.292,0" transform="translate(-130.869 0)" fill="#fff"/>
+            </g>
+          </g>
+        </g>
+        <path id="Контур_52" data-name="Контур 52" d="M133.93,24.873V35.7h6.495V29.925H146.2a7.146,7.146,0,0,0,6.784-5.052Z" transform="translate(-83.415 -15.491)" fill="#fff"/>
+        <path id="Контур_53" data-name="Контур 53" d="M72.705,0V20.206h5.773a2.564,2.564,0,0,0,2.165-1.443l5.052-10.1h.722V20.206h6.495V0H87.138a3,3,0,0,0-2.165,1.443l-5.052,10.1H79.2V0Z" transform="translate(-45.282 0)" fill="#fff"/>
+        <path id="Контур_54" data-name="Контур 54" d="M0,20.206V0H6.495S8.371,0,9.382,2.887c2.6,7.65,2.887,8.66,2.887,8.66s.577-1.876,2.887-8.66C16.165,0,18.041,0,18.041,0h6.495V20.206H18.041V9.382H17.32L13.712,20.206H10.825L7.217,9.382H6.495V20.206Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
