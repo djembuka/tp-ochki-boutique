@@ -14,6 +14,7 @@ $APPLICATION->SetTitle("Markup");
 		<li><a href="news-detail/">Детальная страница Новостей и Акций</a></li>
 		<li><a href="actions-closed/">Закрытые акции</a></li>
 		<li><a href="consent-popup/">Всплывающее окно пользовательского соглашения</a></li>
+		<li><a href="header1/">Шапка Seller 2.0</a></li>
 	</ul>
 </div>
 
