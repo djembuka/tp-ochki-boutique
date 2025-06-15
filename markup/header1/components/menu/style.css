@@ -1,4 +1,6 @@
-#slr2MenuElem {
+#slr2MenuElem,
+#slr2MenuElem * {
+  box-sizing: border-box;
 }
 #slr2MenuElem.slr2-menu--show {
   position: static;

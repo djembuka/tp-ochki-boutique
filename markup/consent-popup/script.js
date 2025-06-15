@@ -7,6 +7,14 @@ window.addEventListener('load', () => {
         localStorage.getItem('twpx-consent-popup-allowed') !== 'Y'
       ) {
         setTimeout(function () {
+          const amoButton = document.querySelector('.amo-button-holder');
+          let zIndex = 0;
+          const zQuiz = 9999;
+          if (amoButton) {
+            zIndex = amoButton.style.zIndex;
+          }
+
+          popup.style.zIndex = Math.max(Number(zIndex) + 1, Number(zQuiz + 1));
           popup.classList.add('twpx-consent-popup--show');
         }, 200);
 

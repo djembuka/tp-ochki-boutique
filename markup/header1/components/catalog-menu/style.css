@@ -1,4 +1,6 @@
-#slr2CatalogMenuElem {
+#slr2CatalogMenuElem,
+#slr2CatalogMenuElem * {
+  box-sizing: border-box;
 }
 #slr2CatalogMenuElem.slr2-catalog-menu--show {
   position: static;
@@ -15,15 +17,16 @@
   overflow: hidden;
   background: var(--slr2-color-primary);
   color: #fff;
-  z-index: 10;
+  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  z-index: 100;
 }
 .slr2-catalog-menu-grid-container {
-  padding: 32px 164px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  columns: 6;
+  padding: var(--twpx-block-padding-xl, 32px);
 }
 .slr2-catalog-menu-grid-item {
+  display: grid;
+  margin-bottom: 24px;
 }
 .slr2-catalog-menu-grid-sub {
   padding-left: 16px;
@@ -31,16 +34,15 @@
 }
 .slr2-catalog-menu-h3 {
   color: #fff;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-size: 18px;
   margin-bottom: 15px;
 }
 .slr2-catalog-menu-grid-item a {
   display: block;
   color: #fff;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin: 4px 0;
+  text-decoration: none;
 }
 .slr2-catalog-menu-grid-item a:last-child {
   margin-bottom: 0;
@@ -106,4 +108,40 @@
 
 .slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(11) {
   transition-delay: 0.55s;
+}
+
+/*Services*/
+.slr2-catalog-menu-service-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: var(--twpx-block-padding-xl, 32px);
+  align-items: flex-start;
+  gap: var(--base-size-l, 24px);
+}
+a.slr2-catalog-menu-service-item {
+  text-decoration: none;
+  display: grid;
+  gap: var(--base-gap-m, 16px);
+}
+.slr2-catalog-menu-service-img {
+  position: relative;
+  padding-top: 75%;
+  overflow: hidden;
+}
+a.slr2-catalog-menu-service-item img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+a.slr2-catalog-menu-service-item .slr2-catalog-menu-service-text {
+  color: #FFF;
+
+  /* default */
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

@@ -1,3 +1,7 @@
+#slr2PhoneElem,
+#slr2PhoneElem * {
+  box-sizing: border-box;
+}
 #slr2PhoneElem {
   pointer-events: none;
   opacity: 0;
@@ -5,6 +9,15 @@
   transition: opacity 0.3s ease;
   position: relative;
   z-index: -1;
+}
+#slr2PhoneElem a {
+  color: #000;
+  text-decoration-line: underline;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+#slr2PhoneElem a:hover {
+  opacity: .7;
 }
 #slr2PhoneElem.slr2-phone--show {
   pointer-events: auto;
@@ -17,13 +30,166 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: var(--slr2-color-primary);
-  padding: 16px;
+  background: #ffffffcc;
   z-index: 10;
 }
-#slr2PhoneElem .slr2-phone-container {
-  position: relative;
-  width: 100%;
-  max-width: 926px;
-  margin: 68px auto 0;
+#slr2PhoneElem .slr2-phone-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 750px;
+  padding: var(--twpx-block-gap-m, 16px);
+  align-items: center;
+  gap: var(--twpx-block-gap-m, 16px);
+  border-radius: var(--twpx-button-border-radius-l, 16px);
+  background: var(--base-background-default, #FFF);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+}
+.slr2-phone-img {
+  border-radius: 8px;
+}
+.slr2-phone-text {
+  padding: 24px;
+  border-radius: var(--twpx-button-border-radius-m, 8px);
+  background: #FAFAFA;
+  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  height: 100%;
+}
+.slr2-phone-clear {
+  position: absolute;
+  top: calc(16px + 24px);
+  right: calc(16px + 24px);
+  cursor: pointer;
+  z-index: 10;
+}
+.slr2-phone-logo {
+  width: 130px;
+  margin: 48px auto 32px;
+  display: block;
+}
+.slr2-phone-tel-main {
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+.slr2-phone-store-name {
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 24px;
+}
+.slr2-phone-tel {
+  color: #000;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 4px;
+}
+.slr2-phone-form {
+  padding-top: 24px;
+  display: grid;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.slr2-phone-form__title {
+  color: #000;
+  text-align: center;
+  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 27px;
+}
+.slr2-phone-form__content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--twpx-block-gap-s, 8px);
+  align-self: stretch;
+}
+.slr2-phone-form__input {
+  height: 48px;
+  width: 66%;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--twpv-input-border-default, #E2E2E2);
+  background: var(--twpv-input-color-default, #F9F9F9);
+  color: var(--twpx-input-text-default, #3B3B3B);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 100% */
+}
+.slr2-phone-form__button {
+  display: flex;
+  height: 48px;
+  width: 34%;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--twpx-button-border-radius-s, 4px);
+  background: var(--base-balck, #000);
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.slr2-phone-consent {
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+}
+@media (max-width: 767px) {
+  #slr2PhoneElem .slr2-phone-popup {
+    display: block;
+    width: calc(100% - 24px * 2);
+    max-width: 750px;
+  }
+  #slr2PhoneElem .slr2-phone-img {
+    display: none;
+  }
+  .slr2-phone-logo {
+    width: 77px;
+    margin: 0 auto 16px;
+  }
+  .slr2-phone-tel-main {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .slr2-phone-store-name {
+    margin-bottom: 8px;
+  }
+  .slr2-phone-tel {}
+  .slr2-phone-form {
+    padding-top: 16px;
+  }
+  .slr2-phone-form__title {}
+  .slr2-phone-form__content {
+    display: grid;
+    gap: var(--twpx-block-gap-s, 8px);
+    justify-content: normal;
+  }
+  .slr2-phone-form__input {
+    width: 100%;
+  }
+  .slr2-phone-form__button {
+    width: 100%;
+  }
+  .slr2-phone-consent {
+    font-size: 10px;
+  }
 }

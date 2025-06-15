@@ -1,19 +1,6 @@
-#slr2MobileMenuElem {
-  pointer-events: none;
-  opacity: 0;
-  -webkit-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
-  position: relative;
-  z-index: -1;
-}
-#slr2MobileMenuElem.slr2-mobile-menu--show {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: auto;
-  opacity: 1;
-  z-index: 10000;
+#slr2MobileMenuElem,
+#slr2MobileMenuElem * {
+  box-sizing: border-box;
 }
 #slr2MobileMenuElem .slr2-mobile-menu {
   background-color: var(--slr2-color-primary);
@@ -24,19 +11,32 @@
   transition: color 0.3s ease;
   text-decoration: none;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
   #slr2MobileMenuElem {
     display: none;
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1199px) {
+  #slr2MobileMenuElem {
+    height: 0;
+    overflow: hidden;
+  }
+  #slr2MobileMenuElem.slr2-mobile-menu--show {
+    height: auto;
+    overflow: visible;
+  }
   #slr2MobileMenuElem .slr2-mobile-menu {
     padding: 0 !important;
     margin: 0 !important;
     overflow: hidden;
+    height: 0;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+  }
+  #slr2MobileMenuElem.slr2-mobile-menu--show .slr2-mobile-menu {
+    height: 100vh;
   }
   #slr2MobileMenuElem .slr2-mobile-menu__block {
-    height: 100vh;
     overflow-y: auto;
   }
   #slr2MobileMenuElem .slr2-mobile-menu__link {
@@ -145,10 +145,12 @@
     z-index: 10;
   }
   #slr2MobileMenuElem .slr2-mobile-menu__sub {
-    display: none;
+    height: 0;
     margin-bottom: 1px;
     max-height: 192px;
     overflow-y: auto;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
   }
   #slr2MobileMenuElem .slr2-mobile-menu__sub__title,
   #slr2MobileMenuElem .slr2-mobile-menu__sub__item {
@@ -160,7 +162,6 @@
     font-size: 15px;
     background: var(--slr2-color-primary);
     color: #fff;
-    box-sizing: border-box;
   }
   #slr2MobileMenuElem
     .slr2-mobile-menu__sub
@@ -182,7 +183,7 @@
     font-size: 20px;
   }
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
   #slr2MobileMenuElem .slr2-mobile-menu {
     display: flex;
     height: 64px;
@@ -201,10 +202,10 @@
     display: flex;
   }
 }
-@media (max-width: 419px) {
+@media (max-width: 575px) {
   #slr2MobileMenuElem .slr2-mobile-menu__title a,
   #slr2MobileMenuElem .slr2-mobile-menu__link {
-    padding: 0 12px;
+    padding: 0 35px 0 16px;
   }
   #slr2MobileMenuElem .slr2-mobile-menu__link:after,
   #slr2MobileMenuElem .slr2-mobile-menu__link span {

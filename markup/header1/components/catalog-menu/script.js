@@ -32,34 +32,79 @@
       this.hide();
     }
 
-    toggle() {
-      !this.wrapper.classList.contains('slr2-slide-toggle--show')
-        ? this.show()
-        : this.hide();
+    toggle(e) {  
+      const elem = e.target;    
+      const type = elem.getAttribute('data-slr2type');
+      this.wrapper = this.elem.querySelector('.slr2-slide-toggle--show');
+
+      if (this.wrapper) {
+        if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
+          this.activeStyle(elem);
+          this.showWhenOpen(elem)
+        } else {
+          this.activeStyle();
+          this.hide();
+        }
+      } else {
+        this.activeStyle(elem);
+        this.show(elem)
+      }
     }
 
-    show() {
+    show(elem) {
+      this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
       this.styleContainer.removeAttribute('style');
 
       //let the site know, that the new component is going to be shown
       const event = new CustomEvent('slr2NewComponentIsShown', {
         detail: {
-          name: 'menu',
+          name: 'catalog-menu',
         },
       });
       document.documentElement.dispatchEvent(event);
 
       const header = document.querySelector('header');
+
       this.wrapper.style.top =
         header.getBoundingClientRect().top + header.clientHeight + 'px';
       this.slideDown(this.wrapper);
+
+      // set type of catalog menu
+
     }
 
     hide() {
       this.slideUp(this.wrapper);
     }
 
-    slideDown(block) {
+    showWhenOpen(elem) {
+      this.activeStyle(elem);
+
+      const height = this.wrapper.clientHeight + 'px';
+
+      setTimeout(() => {
+        this.wrapper.classList.remove('slr2-slide-toggle--show');
+        this.wrapper.classList.remove('slr2-slide-toggle--animate');
+
+        this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
+        const header = document.querySelector('header');
+        this.wrapper.style.top =
+        header.getBoundingClientRect().top + header.clientHeight + 'px';
+        this.slideDown(this.wrapper, height);
+      }, 0);
+    }
+
+    activeStyle(elem) {
+      document.querySelectorAll('.slr2-header1__menu-item--active').forEach(a => {
+        a.classList.remove('slr2-header1__menu-item--active')
+      })
+
+      if (elem && elem.classList.contains('slr2-header1__menu-item')) {
+        elem.classList.add('slr2-header1__menu-item--active')
+      }
+    }
+
+    slideDown(block, h) {
       if (!block.classList.contains('slr2-slide-toggle')) {
         block.classList.add('slr2-slide-toggle');
       }
@@ -69,11 +114,11 @@
 
         var height = block.clientHeight + 'px';
 
-        block.style.height = '0px';
+        block.style.height = h || '0px';
 
         setTimeout(() => {
           block.style.height = height;
-        }, 0);
+        }, 100);
 
         setTimeout(() => {
           block.classList.add('slr2-slide-toggle--animate');
@@ -145,43 +190,66 @@
   }
 
   async function fetchComponent() {
-    const url = document
-      .querySelector(`[data-slr2toggle="${componentObj.name}"]`)
-      .getAttribute('data-slr2url');
-    const response = await fetch(url);
-    const result = await response.text();
+    const promiseArray = [];
 
-    //загружаем и добавляем на страницу html, css
-    //обёртка, чтобы не было видно html до загрузки стилей
-    const div = document.createElement('div');
-    div.className = 'slr2-catalog-menu-component-container';
-    div.style.position = 'absolute';
-    div.style.top = '0';
-    div.style.left = '0';
-    div.style.width = '0';
-    div.style.height = '0';
-    div.style.overflow = 'hidden';
-    div.style.opacity = '0';
-    div.style.zIndex = '-1';
+    document
+      .querySelectorAll(`[data-slr2toggle="catalog-menu"]`).forEach((elem) => {
+        const url = elem.getAttribute('data-slr2url');
+        const type = elem.getAttribute('data-slr2type');
+        
+        const promise = fetch(url)
+          .then(response => response.text())
+          .then(result => {
+            const div = document.createElement('div');
+            div.setAttribute('data-slr2type', type);
+            div.className = 'slr2-catalog-menu-wrapper';
+            div.innerHTML = result;
+            return { div, type };
+          });
+        
+        promiseArray.push(promise);
+      });
 
-    const elem = document.createElement('div');
-    elem.id = 'slr2CatalogMenuElem';
-    elem.innerHTML = result;
+    try {
+      //загружаем и добавляем на страницу html, css
+      //обёртка, чтобы не было видно html до загрузки стилей
+      const div = document.createElement('div');
+      div.className = 'slr2-catalog-menu-component-container';
+      div.style.position = 'absolute';
+      div.style.top = '0';
+      div.style.left = '0';
+      div.style.width = '0';
+      div.style.height = '0';
+      div.style.overflow = 'hidden';
+      div.style.opacity = '0';
+      div.style.zIndex = '-1';
 
-    div.append(elem);
-    document.querySelector('body').append(div);
+      const elem = document.createElement('div');
+      elem.id = 'slr2CatalogMenuElem';
 
-    //добавляем экземпляр класса в глобальное пространство
-    window.seller2 = window.seller2 || {};
-    window.seller2[componentObj.component] = new slr2CatalogMenuComponent(
-      document.getElementById('slr2CatalogMenuElem')
-    );
+      div.append(elem);
+      document.querySelector('body').append(div);
+      
+      const results = await Promise.all(promiseArray);
+      
+      results.forEach(({ div, type }) => {
+        document.getElementById('slr2CatalogMenuElem').append(div);
+      });
 
-    window.seller2[componentObj.component].styleContainer = div;
+      //добавляем экземпляр класса в глобальное пространство
+      window.seller2 = window.seller2 || {};
+      window.seller2[componentObj.component] = new slr2CatalogMenuComponent(
+        document.getElementById('slr2CatalogMenuElem')
+      );
 
-    //вызываем событие при загрузке компонента,
-    //теперь на кнопку можно нажать
-    const event = new Event(componentObj.event);
-    document.documentElement.dispatchEvent(event);
+      window.seller2[componentObj.component].styleContainer = div;
+
+      //вызываем событие при загрузке компонента,
+      //теперь на кнопку можно нажать
+      const event = new Event(componentObj.event);
+      document.documentElement.dispatchEvent(event);
+    } catch (error) {
+      console.error('Error loading catalog menu components:', error);
+    }
   }
 })();

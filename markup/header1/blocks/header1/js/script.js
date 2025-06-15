@@ -17,7 +17,7 @@
     }
 
     setItemsWidth() {
-      if (window.matchMedia('(min-width: 768px)').matches) {
+      if (window.matchMedia('(min-width: 1200px)').matches) {
         this.menuItems.forEach((item) => {
           item.setAttribute('data-width', item.clientWidth);
         });
@@ -77,27 +77,31 @@
 
   //basket count updating
   window.addEventListener('DOMContentLoaded', () => {
-    if (window.seller2.slr2BasketComponent) {
-      window.seller2.slr2BasketComponent.updateCount();
-    } else {
-      document.documentElement.addEventListener('slr2BasketLoaded', () => {
-        window.seller2.slr2BasketComponent.updateCount();
-      });
-    }
+    ['basket', 'favorite'].forEach((name) => {
+      const capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
-    document.documentElement.addEventListener('slr2BasketCountUpdated', (e) => {
-      onBasketChanged(e.detail.count);
+      if (window.seller2[`slr2${capitalName}Component`]) {
+        window.seller2[`slr2${capitalName}Component`].updateCount();
+      } else {
+        document.documentElement.addEventListener(`slr2${capitalName}Loaded`, () => {
+          window.seller2[`slr2${capitalName}Component`].updateCount();
+        });
+      }
+
+      document.documentElement.addEventListener(`slr2${capitalName}CountUpdated`, (e) => {
+        onCountChanged(e.detail.count, name);
+      });
     });
   });
 
-  function onBasketChanged(count) {
-    const basketIcon = document.querySelector(`.slr2-header1__basket-icon`);
+  function onCountChanged(count, name) {
+    const icon = document.querySelector(`.slr2-header1__${name}-icon`);
 
-    if (Number(count) > 0 && basketIcon.querySelector('span')) {
-      basketIcon.querySelector('span').textContent = count;
-      basketIcon.classList.add('slr2-header1__basket-full');
+    if (Number(count) > 0 && icon.querySelector('span')) {
+      icon.querySelector('span').textContent = count;
+      icon.classList.add(`slr2-header1__${name}-full`);
     } else {
-      basketIcon.classList.remove('slr2-header1__basket-full');
+      icon.classList.remove(`slr2-header1__${name}-full`);
     }
   }
 })();

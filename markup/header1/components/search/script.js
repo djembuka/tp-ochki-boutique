@@ -31,7 +31,7 @@
 
       this.clear.addEventListener('click', (e) => {
         e.preventDefault();
-        this.clear();
+        this.clearInput();
       });
 
       this.input.addEventListener('keyup', () => {
@@ -70,7 +70,7 @@
       );
     }
 
-    clear() {
+    clearInput() {
       this.input.value = '';
       this.input.focus();
       this.elem.classList.remove('slr2-search--filled');
@@ -93,6 +93,11 @@
       });
       document.documentElement.dispatchEvent(event);
 
+      // Add search parameter to URL
+      const url = new URL(window.location.href);
+      url.searchParams.set('search', 'Y');
+      window.history.pushState({}, '', url);
+
       this.elem.classList.add('slr2-search--show');
       setTimeout(() => {
         this.elem.classList.add('slr2-search--animate');
@@ -105,6 +110,11 @@
       setTimeout(() => {
         this.elem.classList.remove('slr2-search--show');
       }, 300);
+
+      // Remove search parameter from URL
+      const url = new URL(window.location.href);
+      url.searchParams.delete('search');
+      window.history.pushState({}, '', url);
     }
   }
 
@@ -143,18 +153,31 @@
 
     window.seller2[componentObj.component].styleContainer = div;
 
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      // mobile
-      document
-        .querySelector('.slr2-header1')
-        .after(document.getElementById('slr2SearchElem'));
-      window.seller2[componentObj.component].show();
+    const linkElem = document.getElementById('slr2SearchElem').querySelector('link');
+
+    if (linkElem) {
+      linkElem.onload = () => {
+        showSearchButton();
+        checkURL();
+      };
     } else {
-      // desktop
+      showSearchButton();
+      checkURL();
+    }
+
+    function showSearchButton() {
       //вызываем событие при загрузке компонента,
       //теперь на кнопку можно нажать
       const event = new Event(componentObj.event);
       document.documentElement.dispatchEvent(event);
+    }
+
+    function checkURL() {
+      // Check URL parameters on page load
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('search') === 'Y') {
+        window.seller2[componentObj.component].show();
+      }
     }
   }
 })();

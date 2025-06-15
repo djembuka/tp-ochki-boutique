@@ -14,6 +14,7 @@
     constructor(elem) {
       this.elem = elem;
       this.wrapper = this.elem.querySelector('.slr2-phone-wrapper');
+      this.clear = this.elem.querySelector('.slr2-phone-clear');
       this.init();
     }
 
@@ -23,6 +24,11 @@
         if (e.target.classList.contains('slr2-phone-wrapper')) {
           this.hide();
         }
+      });
+
+      this.clear.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.hide();
       });
     }
 

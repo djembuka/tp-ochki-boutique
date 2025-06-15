@@ -24,6 +24,7 @@
     }
 
     elements() {
+      this.mmMenu = this.elem.querySelector('.slr2-mobile-menu');
       this.mmItems = this.elem.querySelectorAll('.slr2-mobile-menu__item');
       this.mmLinks = this.elem.querySelectorAll('.slr2-mobile-menu__link');
       this.mmClose = this.elem.querySelector('.slr2-mobile-menu__close');
@@ -80,8 +81,20 @@
       });
       document.documentElement.dispatchEvent(event);
 
+      //calculate height of menu
+      this.mmMenu.style.height = 'auto';
+      const height = this.mmMenu.clientHeight + 'px';
+
+      this.mmMenu.style.height = '0px';
+
       this.elem.classList.add('slr2-mobile-menu--show');
-      document.querySelector('body').classList.add('slr2-body--no-scroll');
+
+      setTimeout(() => {
+        this.mmMenu.style.height = height;
+        setTimeout(() => {
+          this.mmMenu.style.height = 'auto';
+        }, 500);
+      }, 0);
 
       //deactivate items
       this.mmItems.forEach((item) => {
@@ -90,8 +103,14 @@
     }
 
     hide() {
-      this.elem.classList.remove('slr2-mobile-menu--show');
-      document.querySelector('body').classList.remove('slr2-body--no-scroll');
+      this.mmMenu.style.height = this.mmMenu.clientHeight + 'px';
+      setTimeout(() => {
+        this.mmMenu.style.height = '0px';
+      }, 0);
+      
+      setTimeout(() => {
+        this.elem.classList.remove('slr2-mobile-menu--show');
+      }, 500);
 
       //deactivate items
       this.mmItems.forEach((item) => {
@@ -127,6 +146,7 @@
         block.style.height = 'auto';
 
         var height = block.clientHeight + 'px';
+        console.log(height);
 
         block.style.height = '0px';
 
@@ -196,7 +216,7 @@
   }
 
   async function fetchComponent() {
-    if (!window.matchMedia('(max-width: 1024px)').matches || fetchFlag) return;
+    if (!window.matchMedia('(max-width: 1199px)').matches || fetchFlag) return;
 
     fetchFlag = true;
 
@@ -234,9 +254,23 @@
 
     window.seller2[componentObj.component].styleContainer = div;
 
-    //вызываем событие при загрузке компонента,
-    //теперь на кнопку можно нажать
-    const event = new Event(componentObj.event);
-    document.documentElement.dispatchEvent(event);
+    const linkElem = document.getElementById('slr2MobileMenuElem').querySelector('link');
+
+    if (linkElem) {
+      linkElem.onload = () => {
+        showMobileMenu();
+      };
+    } else {
+      showMobileMenu();
+    }
+
+    function showMobileMenu() {
+      //вызываем событие при загрузке компонента,
+      //теперь на кнопку можно нажать
+      const event = new Event(componentObj.event);
+      document.documentElement.dispatchEvent(event);
+      
+      document.querySelector('.slr2-header1').after(document.getElementById('slr2MobileMenuElem'));
+    }    
   }
 })();

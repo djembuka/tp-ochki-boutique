@@ -55,32 +55,34 @@ window.seller2.toggleButtons = () => {
         //делаем элемент видимым и кликабельным
         elem.classList.add('slr2--component-loaded');
         //обрабатываем клик
-        elem.addEventListener('click', (e) => {
-          e.preventDefault();
-          //вызываем метод show
-          if (
-            window.seller2[iconObj.component] &&
-            window.seller2[iconObj.component][iconObj.method]
-          ) {
-            window.seller2[iconObj.component][iconObj.method]();
-          }
-        });
+        if (window.seller2[iconObj.component][iconObj.method]){
+          elem.addEventListener('click', (e) => {
+            e.preventDefault();
+            //вызываем метод show
+            if (
+              window.seller2[iconObj.component] &&
+              window.seller2[iconObj.component][iconObj.method]
+            ) {
+              window.seller2[iconObj.component][iconObj.method](e);
+            }
+          });
+        }
       }
     });
   }
 };
 
 document.documentElement.addEventListener('slr2NewComponentIsShown', (e) => {
-  // const name = e.detail.name;
-  // const w = window.seller2;
-  // window.seller2.componentNames.forEach((cName) => {
-  //   const componentName = `slr2${window.seller2.utils.className(
-  //     cName
-  //   )}Component`;
-  //   if (name !== cName && w[componentName]) {
-  //     w[componentName].hide();
-  //   }
-  // });
+  const name = e.detail.name;
+  const w = window.seller2;
+  window.seller2.componentNames.forEach((cName) => {
+    const componentName = `slr2${window.seller2.utils.className(
+      cName
+    )}Component`;
+    if (name !== cName && w[componentName] && w[componentName].hide) {
+      w[componentName].hide();
+    }
+  });
 });
 
 document.documentElement.addEventListener('click', (e) => {
@@ -91,7 +93,7 @@ document.documentElement.addEventListener('click', (e) => {
       cName
     )}Component`;
 
-    if (w[componentName]) {
+    if (w[componentName] && w[componentName].documentClick) {
       w[componentName].documentClick(e);
     }
   });

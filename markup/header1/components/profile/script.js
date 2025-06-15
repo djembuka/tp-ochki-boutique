@@ -49,7 +49,7 @@
 
       const header = document.querySelector('header');
       this.wrapper.style.top =
-        header.getBoundingClientRect().top + header.clientHeight + 'px';
+        header.getBoundingClientRect().top + header.clientHeight + 10 + 'px';
       this.slideDown(this.wrapper);
     }
 

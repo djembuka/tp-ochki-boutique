@@ -1,14 +1,14 @@
 (() => {
   const componentObj = {
-    name: 'basket',
-    event: 'slr2BasketLoaded',
-    component: 'slr2BasketComponent',
+    name: 'favorite',
+    event: 'slr2FavoriteLoaded',
+    component: 'slr2FavoriteComponent',
     method: 'toggle',
   };
 
-  class Slr2BasketComponent {
+  class Slr2FavoriteComponent {
     constructor() {
-      this.name = 'basket';
+      this.name = 'favorite';
       this.count = 0;
     }
 
@@ -17,7 +17,7 @@
 
       const th = this;
       BX.ajax
-        .runComponentAction('twinpx:small-basket', 'count', {
+        .runComponentAction('twinpx:favorite', 'count', {
           mode: 'class',
           method: 'GET',
           data: {},
@@ -25,10 +25,10 @@
         .then(
           (response) => {
             th.count = response.data.count;
-            const basketEvent = new CustomEvent('slr2BasketCountUpdated', {
+            const favoriteEvent = new CustomEvent('slr2FavoriteCountUpdated', {
               detail: { count: th.count },
             });
-            document.documentElement.dispatchEvent(basketEvent);
+            document.documentElement.dispatchEvent(favoriteEvent);
           },
           (error) => {
             //сюда будут приходить все ответы, у которых status !== 'success'
@@ -44,7 +44,7 @@
 
   function fetchComponent() {
     window.seller2 = window.seller2 || {};
-    window.seller2[componentObj.component] = new Slr2BasketComponent();
+    window.seller2[componentObj.component] = new Slr2FavoriteComponent();
 
     //вызываем событие при загрузке компонента,
     //теперь на кнопку можно нажать
