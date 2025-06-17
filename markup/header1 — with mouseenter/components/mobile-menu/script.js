@@ -8,7 +8,9 @@
 
   let fetchFlag;
 
-  fetchComponent();
+  setTimeout(() => {
+    fetchComponent();
+  }, 2000);
 
   window.addEventListener('resize', () => {
     fetchComponent();

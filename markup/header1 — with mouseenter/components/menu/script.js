@@ -1,18 +1,18 @@
 (() => {
   const componentObj = {
-    name: 'profile',
-    event: 'slr2ProfileLoaded',
-    component: 'slr2ProfileComponent',
+    name: 'menu',
+    event: 'slr2MenuLoaded',
+    component: 'slr2MenuComponent',
     method: 'toggle',
   };
 
   fetchComponent();
 
-  class Slr2ProfileComponent {
+  class Slr2MenuComponent {
     constructor(elem) {
       this.elem = elem;
-      this.name = 'profile';
-      this.wrapper = this.elem.querySelector('.slr2-profile-wrapper');
+      this.name = 'menu';
+      this.wrapper = this.elem.querySelector('.slr2-menu-wrapper');
     }
 
     documentClick(event) {
@@ -42,14 +42,14 @@
       //let the site know, that the new component is going to be shown
       const event = new CustomEvent('slr2NewComponentIsShown', {
         detail: {
-          name: 'profile',
+          name: 'menu',
         },
       });
       document.documentElement.dispatchEvent(event);
 
       const header = document.querySelector('header');
       this.wrapper.style.top =
-        header.getBoundingClientRect().top + header.clientHeight + 10 + 'px';
+        header.getBoundingClientRect().top + header.clientHeight + 'px';
       this.slideDown(this.wrapper);
     }
 
@@ -137,11 +137,10 @@
   function fetchComponent() {
     //загружаем и добавляем на страницу html, css
     //обёртка, чтобы не было видно html до загрузки стилей
-
     if (!window.BX) return;
 
     BX.ajax
-      .runComponentAction('twinpx:user-profile', 'init', {
+      .runComponentAction('twinpx:top-menu', 'init', {
         mode: 'class',
         method: 'GET',
         data: {},
@@ -151,7 +150,7 @@
           const result = response.data.html;
 
           const div = document.createElement('div');
-          div.className = 'slr2-profile-component-container';
+          div.className = 'slr2-menu-component-container';
           div.style.position = 'absolute';
           div.style.top = '0';
           div.style.left = '0';
@@ -162,7 +161,7 @@
           div.style.zIndex = '-1';
 
           const elem = document.createElement('div');
-          elem.id = 'slr2ProfileElem';
+          elem.id = 'slr2MenuElem';
           elem.innerHTML = result;
 
           div.append(elem);
@@ -170,8 +169,8 @@
 
           //добавляем экземпляр класса в глобальное пространство
           window.seller2 = window.seller2 || {};
-          window.seller2[componentObj.component] = new Slr2ProfileComponent(
-            document.getElementById('slr2ProfileElem')
+          window.seller2[componentObj.component] = new Slr2MenuComponent(
+            document.getElementById('slr2MenuElem')
           );
 
           window.seller2[componentObj.component].styleContainer = div;

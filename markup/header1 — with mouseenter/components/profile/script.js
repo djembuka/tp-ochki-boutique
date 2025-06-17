@@ -12,7 +12,17 @@
     constructor(elem) {
       this.elem = elem;
       this.name = 'profile';
+      this.flag = false;
       this.wrapper = this.elem.querySelector('.slr2-profile-wrapper');
+
+      this.wrapper.addEventListener('mouseenter', (e) => {
+        this.flag = true;
+        this.show(e);
+      });
+      this.wrapper.addEventListener('mouseleave', (e) => {
+        this.flag = false;
+        this.hide(e);
+      });
     }
 
     documentClick(event) {
@@ -54,7 +64,11 @@
     }
 
     hide() {
-      this.slideUp(this.wrapper);
+      setTimeout(() => {
+        if (!this.flag) {
+          this.slideUp(this.wrapper);
+        }
+      }, 100);
     }
 
     slideDown(block) {

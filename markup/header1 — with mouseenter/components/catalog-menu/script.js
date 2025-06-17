@@ -6,13 +6,33 @@
     method: 'toggle',
   };
 
-  fetchComponent();
+  setTimeout(() => {
+    fetchComponent();
+  }, 2000);
 
   class slr2CatalogMenuComponent {
     constructor(elem) {
       this.elem = elem;
       this.name = 'catalog-menu';
       this.wrapper = this.elem.querySelector('.slr2-catalog-menu-wrapper');
+
+      this.flag = {};
+      document.querySelectorAll(`[data-slr2toggle="${this.name}"]`).forEach(item => {
+        this.flag[item.getAttribute('data-slr2type')] = false;
+      })
+
+      this.elem.querySelectorAll('.slr2-catalog-menu-wrapper').forEach(w => {
+        w.addEventListener('mouseenter', (e) => {
+          console.log('mouseenter w', this.flag[w.getAttribute('data-slr2type')])
+          this.flag[w.getAttribute('data-slr2type')] = true;
+          this.toggle(e);
+        });
+        w.addEventListener('mouseleave', (e) => {
+          console.log('mouseleave w', this.flag[w.getAttribute('data-slr2type')])
+          this.flag[w.getAttribute('data-slr2type')] = false;
+          this.toggle(e);
+        });
+      })
     }
 
     documentClick(event) {
@@ -30,27 +50,42 @@
       this.hide();
     }
 
-    toggle(e) {  
-      const elem = e.target;    
-      const type = elem.getAttribute('data-slr2type');
-      this.wrapper = this.elem.querySelector('.slr2-slide-toggle--show');
+    toggle(e) {
+      let menuItem, wrapper, type = e.target.getAttribute('data-slr2type');
 
-      if (this.wrapper) {
-        if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
-          this.activeStyle(elem);
-          this.showWhenOpen(elem)
-        } else {
-          this.activeStyle();
-          this.hide();
-        }
-      } else {
-        this.activeStyle(elem);
-        this.show(elem)
+      if (e.target.classList.contains('slr2-header1__menu-item')) {
+        menuItem = e.target;
+        wrapper = document.querySelector(`.slr2-catalog-menu-wrapper[data-slr2type="${type}"]`);
+      } else if (e.target.classList.contains('slr2-catalog-menu-wrapper')) {
+        wrapper = e.target;
+        menuItem = document.querySelector(`.slr2-header1__menu-item[data-slr2type="${type}"]`);
       }
+
+      this.wrapper = this.elem.querySelector('.slr2-slide-toggle--show');
+      console.log('toggle wrapper', this.wrapper)
+      
+      if (!this.flag[type]) {
+        this.hide(menuItem, wrapper);
+      } else if (!this.wrapper || this.wrapper === wrapper) {
+        this.show(menuItem, wrapper)
+      } else {
+        this.showWhenOpen(menuItem, wrapper)
+      }
+
+      // if (this.wrapper) {
+      //   if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
+      //     this.showWhenOpen(menuItem, wrapper)
+      //   } else {
+      //     this.hide(menuItem, wrapper);
+      //   }
+      // } else {
+      //   this.show(menuItem, wrapper)
+      // }
     }
 
-    show(elem) {
-      this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
+    show(menuItem, wrapper) {
+      console.log('show')
+      this.wrapper = wrapper || this.elem.querySelector(`[data-slr2type="${menuItem.getAttribute('data-slr2type')}"]`);
       this.styleContainer.removeAttribute('style');
 
       //let the site know, that the new component is going to be shown
@@ -66,18 +101,35 @@
       this.wrapper.style.top =
         header.getBoundingClientRect().top + header.clientHeight + 'px';
       this.slideDown(this.wrapper);
-
-      // set type of catalog menu
-
+      this.activeStyle(menuItem, 'add');
+      this.menuOverflow('add');
     }
 
-    hide() {
-      this.slideUp(this.wrapper);
-      this.activeStyle();
+    hide(menuItem, wrapper) {
+      console.log('hide')
+      if (menuItem && wrapper) {
+        this.menuOverflow('remove');
+        setTimeout(() => {
+          if (!this.flag[wrapper.getAttribute('data-slr2type')]) {
+            this.slideUp(wrapper);
+            this.activeStyle(menuItem, 'remove');
+          }
+        }, 100);
+      } else {
+        // click document
+        this.menuOverflow('remove');
+        this.elem.querySelectorAll('.slr2-catalog-menu-wrapper.slr2-slide-toggle--show').forEach(w => {
+          this.slideUp(w);
+        });
+        document.querySelectorAll('.slr2-header1__menu-item--active').forEach(i => {
+          this.activeStyle(i, 'remove');
+        })
+      }
+      
     }
 
-    showWhenOpen(elem) {
-      this.activeStyle(elem);
+    showWhenOpen(menuItem, wrapper) {
+      console.log('showWhenOpen', this.wrapper === wrapper)
 
       const height = this.wrapper.clientHeight + 'px';
 
@@ -85,70 +137,104 @@
         this.wrapper.classList.remove('slr2-slide-toggle--show');
         this.wrapper.classList.remove('slr2-slide-toggle--animate');
 
-        this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
+        this.wrapper = wrapper;
         const header = document.querySelector('header');
-        this.wrapper.style.top =
-        header.getBoundingClientRect().top + header.clientHeight + 'px';
+
+        this.wrapper.style.top = header.getBoundingClientRect().top + header.clientHeight + 'px';
+
         this.slideDown(this.wrapper, height);
+        this.activeStyle(menuItem, 'add');
+        this.menuOverflow('add');
       }, 0);
     }
 
-    activeStyle(elem) {
-      document.querySelectorAll('.slr2-header1__menu-item--active').forEach(a => {
-        a.classList.remove('slr2-header1__menu-item--active')
-      })
+    activeStyle(menuItem, method) {
+      if (menuItem && menuItem.classList.contains('slr2-header1__menu-item')) {
+        menuItem.classList[method]('slr2-header1__menu-item--active', 'slr2--show');
+      }
+    }
 
-      if (elem && elem.classList.contains('slr2-header1__menu-item')) {
-        elem.classList.add('slr2-header1__menu-item--active')
+    menuOverflow(method) {
+      switch(method) {
+        case 'add':
+          document.querySelector('.slr2-header1__menu menu').style.overflow = 'visible';
+          break;
+        case 'remove':
+          document.querySelector('.slr2-header1__menu menu').removeAttribute('style');
+          break;
       }
     }
 
     slideDown(block, h) {
+      console.log('slideDown')
       if (!block.classList.contains('slr2-slide-toggle')) {
+        console.log('slideDown add slr2-slide-toggle')
         block.classList.add('slr2-slide-toggle');
       }
-      if (!block.classList.contains('slr2-slide-toggle--show')) {
+      console.log('slideDown block.classList.contains', block.classList.contains('slr2-slide-toggle--show'), this.flag[block.getAttribute('data-slr2type')])
+      //if (!block.classList.contains('slr2-slide-toggle--show')) {
         block.classList.add('slr2-slide-toggle--show');
+        console.log('slideDown add slr2-slide-toggle--show')
         block.style.height = 'auto';
+        console.log('slideDown height auto')
 
         var height = block.clientHeight + 'px';
+        console.log('slideDown height px')
 
         block.style.height = h || '0px';
+        console.log('slideDown block.style.height')
 
         setTimeout(() => {
-          block.style.height = height;
+          console.log('slideDown set timeout 100')
+          if (this.flag[block.getAttribute('data-slr2type')]) {
+            console.log('slideDown set timeout 100 if')
+            block.style.height = height;
+          }
         }, 100);
 
         setTimeout(() => {
-          block.classList.add('slr2-slide-toggle--animate');
-        }, 500);
-      }
+          console.log('slideDown set timeout 300')
+          if (this.flag[block.getAttribute('data-slr2type')]) {
+            console.log('slideDown set timeout 300 if')
+            block.classList.add('slr2-slide-toggle--animate');
+          }
+        }, 300);
+      //}
     }
 
     slideUp(block) {
+      console.log('slideUp')
       if (!block.classList.contains('slr2-slide-toggle')) {
+        console.log('slideUp add slr2-slide-toggle')
         block.classList.add('slr2-slide-toggle');
       }
 
-      if (block.classList.contains('slr2-slide-toggle--show')) {
+      //if (block.classList.contains('slr2-slide-toggle--show')) {
+        console.log('slideUp contains slr2-slide-toggle--show')
         if (block.style.height === '0px') {
+          console.log('slideUp remove --show --animate')
           block.classList.remove('slr2-slide-toggle--show');
           block.classList.remove('slr2-slide-toggle--animate');
         } else {
+          console.log('slideUp height 0')
           block.style.height = '0px';
           block.classList.remove('slr2-slide-toggle--animate');
 
           block.addEventListener(
             'transitionend',
             () => {
-              block.classList.remove('slr2-slide-toggle--show');
+              console.log('slideUp transitionend')
+              if (!this.flag[block.getAttribute('data-slr2type')]) {
+                console.log('slideUp transitionend if')
+                block.classList.remove('slr2-slide-toggle--show');
+              }
             },
             {
               once: true,
             }
           );
         }
-      }
+      //}
     }
 
     slideToggle(block) {

@@ -6,7 +6,9 @@
     method: 'toggle',
   };
 
-  fetchComponent();
+  setTimeout(() => {
+    fetchComponent();
+  }, 2000);
 
   class Slr2PhoneComponent {
     constructor(elem) {

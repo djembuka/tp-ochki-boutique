@@ -23,10 +23,15 @@
 .slr2-catalog-menu-grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  align-items: start;
   padding: var(--twpx-block-padding-xl, 32px);
 }
 .slr2-catalog-menu-grid-item {
   display: grid;
+}
+.slr2-catalog-menu-grid-item span {
+  display: block;
+  height: 24px;
 }
 .slr2-catalog-menu-grid-sub {
   padding-left: 16px;
@@ -43,18 +48,9 @@
   font-size: 14px;
   margin: 4px 0;
   text-decoration: none;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
-}
-.slr2-catalog-menu-grid-item a:hover {
-  opacity: .7;
 }
 .slr2-catalog-menu-grid-item a:last-child {
   margin-bottom: 0;
-}
-.slr2-catalog-menu-grid-item span {
-  display: block;
-  height: 24px;
 }
 
 #sellerHeader_1 .bj-page-header__dropdown article strong {
@@ -64,8 +60,8 @@
 .slr2-catalog-menu-grid-item a {
   transform: translateX(-10px);
   -webkit-transform: translateX(-10px);
-  transition: all 0.5s ease, opacity .3s ease;
-  -webkit-transition: all 0.5s ease, opacity .3s ease;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
   opacity: 0;
 }
 
@@ -73,9 +69,6 @@
   transform: translateX(0);
   -webkit-transform: translateX(0);
   opacity: 1;
-}
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:hover {
-  opacity: .7;
 }
 
 .slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(1) {
@@ -120,42 +113,6 @@
 
 .slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(11) {
   transition-delay: 0.33s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(12) {
-  transition-delay: 0.36s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(13) {
-  transition-delay: 0.39s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(14) {
-  transition-delay: 0.42s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(15) {
-  transition-delay: 0.45s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(16) {
-  transition-delay: 0.48s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(17) {
-  transition-delay: 0.51s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(18) {
-  transition-delay: 0.54s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(19) {
-  transition-delay: 0.57s;
-}
-
-.slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(20) {
-  transition-delay: 0.60s;
 }
 
 /*Services*/
