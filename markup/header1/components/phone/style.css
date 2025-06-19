@@ -103,6 +103,13 @@
   line-height: normal;
   margin-bottom: 4px;
 }
+#slr2PhoneElem .slr2-phone-tel-main a,
+#slr2PhoneElem .slr2-phone-tel a {
+  text-decoration-line: none;
+  text-decoration: none;
+  pointer-events: none;
+  cursor: text;
+}
 .slr2-phone-form {
   padding-top: 24px;
   display: grid;
@@ -140,7 +147,7 @@
 }
 .slr2-phone-form__label {
   position: absolute;
-  top: 19px;
+  top: 18px;
   left: 16px;
   margin: 0;
   padding: 0;
@@ -356,7 +363,7 @@
     gap: var(--twpx-block-gap-s, 8px);
     justify-content: normal;
   }
-  .slr2-phone-form__input {
+  .slr2-phone-form__control {
     width: 100%;
   }
   .slr2-phone-form__button {
@@ -364,6 +371,10 @@
   }
   .slr2-phone-consent {
     font-size: 10px;
+  }
+  #slr2PhoneElem .slr2-phone-tel-main a,
+  #slr2PhoneElem .slr2-phone-tel a {
+    pointer-events: auto;
   }
 }
 @-webkit-keyframes load-circle {
