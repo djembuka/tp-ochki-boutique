@@ -147,7 +147,14 @@ body.slr2-body--no-scroll {
 .slr2-header1 {
   background-color: var(--slr2-header1-background-color);
   height: 64px;
-  padding: var(--twpx-block-padding-m, 16px);
+  padding: var(--twpx-block-padding-m, 16px) 0;
+}
+.slr2-header1 a {
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+.slr2-header1 a:hover {
+  opacity: .7;
 }
 .slr2-header1 a,
 .slr2-header1 a:hover {
@@ -420,8 +427,7 @@ a.slr2-header1__menu-item:hover {
 @media (min-width: 1200px) {
   .slr2-header1 {
     height: 70px;
-    padding: var(--twpx-block-padding-m, 16px)
-      var(--twpx-block-padding-xl, 32px);
+    padding: var(--twpx-block-padding-m, 16px) 0;
   }
   .slr2-header1__menu,
   .slr2-header1__favorite-icon,
@@ -463,8 +469,7 @@ a.slr2-header1__menu-item:hover {
 @media (min-width: 576px) {
   .slr2-header1 {
     height: 70px;
-    padding: var(--twpx-block-padding-m, 16px)
-      var(--twpx-block-padding-xl, 32px);
+    padding: var(--twpx-block-padding-m, 16px) 0;
   }
   .slr2-header1__search-icon,
   .slr2-header1__search-icon.slr2--component-loaded {

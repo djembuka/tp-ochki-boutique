@@ -11,7 +11,7 @@
 #slr2ProfileElem .slr2-profile-wrapper {
   position: absolute;
   top: 100px;
-  right: 32px;
+  right: calc((100vw - 1480px) / 2);
   height: 0;
   overflow: hidden;
   background: var(--slr2-color-primary);
@@ -69,8 +69,18 @@
   justify-content: center;
   z-index: 10;
 }
-@media (max-width: 1199px) {
+@media (max-width: 575px) {
   #slr2ProfileElem {
     display: none;
+  }
+}
+@media (max-width: 1500px) {
+  #slr2ProfileElem .slr2-profile-wrapper {
+    right: 24px;
+  }
+}
+@media (max-width: 700px) {
+  #slr2ProfileElem .slr2-profile-wrapper {
+    right: 12px;
   }
 }

@@ -6,8 +6,6 @@
     method: 'toggle',
   };
 
-  fetchComponent();
-
   class Slr2SearchComponent {
     constructor(elem) {
       this.elem = elem;
@@ -72,6 +70,8 @@
       this.input.value = '';
       this.input.focus();
       this.elem.classList.remove('slr2-search--filled');
+
+      document.querySelector('.title-search-result').innerHTML = '';
     }
 
     toggle() {
@@ -81,7 +81,7 @@
     }
 
     show() {
-      this.styleContainer.removeAttribute('style');
+      // this.styleContainer.removeAttribute('style');
 
       //let the site know, that the new component is going to be shown
       const event = new CustomEvent('slr2NewComponentIsShown', {
@@ -118,8 +118,10 @@
     }
   }
 
+  fetchComponent();
+
   async function fetchComponent() {
-    const url = document
+    /*const url = document
       .querySelector(`[data-slr2toggle="${componentObj.name}"]`)
       .getAttribute('data-slr2url');
     const response = await fetch(url);
@@ -143,7 +145,7 @@
     elem.innerHTML = result;
 
     div.append(elem);
-    document.querySelector('body').append(div);
+    document.querySelector('body').append(div);*/
 
     //добавляем экземпляр класса в глобальное пространство
     window.seller2 = window.seller2 || {};
@@ -151,7 +153,7 @@
       document.getElementById('slr2SearchElem')
     );
 
-    window.seller2[componentObj.component].styleContainer = div;
+    // window.seller2[componentObj.component].styleContainer = div;
 
     const linkElem = document.getElementById('slr2SearchElem').querySelector('link');
 
