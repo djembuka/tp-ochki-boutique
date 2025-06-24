@@ -208,13 +208,15 @@ body.slr2-body--no-scroll {
 }
 .slr2-header1__menu-item {
   font-family: Roboto, roboto_ltregular, arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   height: 32px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
   white-space: nowrap;
   visibility: hidden;
   -webkit-transition: opacity 0.3s ease;
@@ -252,6 +254,21 @@ a.slr2-header1__menu-item:hover {
 .slr2-header1__menu a:hover,
 .slr2-header1__menu a:visited {
   color: var(--slr2-header1-link-color);
+}
+.slr2-header1__menu-item a img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.slr2-header1__menu a.slr2-menu-item--special,
+.slr2-header1__menu a.slr2-menu-item--special:hover,
+.slr2-header1__menu a.slr2-menu-item--special:visited,
+.slr2-header1__menu a.slr2-menu-item--special:active,
+.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special,
+.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:hover,
+.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:visited,
+.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:active {
+  color: var(--base-colors-yellow, #FFE100) !important;
 }
 /*Icons*/
 .slr2-header1__icons {
