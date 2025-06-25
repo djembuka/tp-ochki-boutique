@@ -34,7 +34,7 @@
 .slr2-profile-content__item a:visited,
 .slr2-profile-content__item span {
   color: #fff;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: robotoregular, arial, sans-serif;
   font-size: 14px;
   display: inline-block;
   margin-right: 12px;
@@ -43,7 +43,7 @@
   transition: opacity 0.3s ease;
 }
 .slr2-profile-content__item a:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-profile-content__item a:last-child,
 .slr2-profile-content__item span:last-child {
@@ -54,7 +54,7 @@
 }
 .slr2-profile-content__item.slr2-profile-content__item--logout a,
 .slr2-profile-content__item.slr2-profile-content__item--logout a:hover {
-  color: var(--twpx-menu-link-special, #FFE100);
+  color: var(--twpx-menu-link-special, #ffe100);
 }
 .slr2-profile-content__photo {
   position: absolute;

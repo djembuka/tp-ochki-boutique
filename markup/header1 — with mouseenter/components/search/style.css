@@ -117,7 +117,7 @@
   max-height: calc(100vh - 70px - 64px - 64px - 32px - 32px);
   overflow-y: auto;
   font-size: 14px;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: robotoregular, arial, sans-serif;
   display: grid;
   gap: 16px;
   background: var(--slr2-color-primary);
@@ -215,7 +215,7 @@
   #slr2SearchElem .slr2-search-container {
     height: 41px;
     padding: var(--twpx-block-gap-s, 8px);
-    padding-left: calc( 8px + 24px + 8px );
+    padding-left: calc(8px + 24px + 8px);
     border-radius: var(--twpx-block-padding-xs, 4px);
   }
   #slr2SearchElem .slr2-search-icon {
@@ -223,7 +223,6 @@
   }
   #slr2SearchElem .slr2-search-input {
     height: 24px;
-
   }
   /* #slr2SearchElem .slr2-search-wrapper {
     position: relative;

@@ -17,7 +17,7 @@
   transition: opacity 0.3s ease;
 }
 #slr2PhoneElem a:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 #slr2PhoneElem.slr2-phone--show {
   pointer-events: auto;
@@ -46,7 +46,7 @@
   align-items: center;
   gap: var(--twpx-block-gap-m, 16px);
   border-radius: var(--twpx-button-border-radius-l, 16px);
-  background: var(--base-background-default, #FFF);
+  background: var(--base-background-default, #fff);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 }
 .slr2-phone-img {
@@ -55,8 +55,8 @@
 .slr2-phone-text {
   padding: 24px;
   border-radius: var(--twpx-button-border-radius-m, 8px);
-  background: #FAFAFA;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  background: #fafafa;
+  font-family: Roboto, arial, sans-serif;
   height: 100%;
 }
 .slr2-phone-clear {
@@ -64,12 +64,12 @@
   top: calc(16px + 24px);
   right: calc(16px + 24px);
   cursor: pointer;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   z-index: 10;
 }
 .slr2-phone-clear:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-phone-logo {
   width: 130px;
@@ -81,6 +81,7 @@
   text-align: center;
   font-size: 24px;
   font-style: normal;
+  font-family: Roboto, arial, sans-serif;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 4px;
@@ -119,10 +120,10 @@
 .slr2-phone-form__title {
   color: #000;
   text-align: center;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
+  font-weight: 700;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
   line-height: 27px;
 }
 .slr2-phone-form__content {
@@ -151,33 +152,36 @@
   left: 16px;
   margin: 0;
   padding: 0;
-  color: var(--twpx-input-text-default, #3B3B3B);
+  color: var(--twpx-input-text-default, #3b3b3b);
   font-size: 12px;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
   -webkit-transition: top 0.2s ease-out, -webkit-font-size 0.2s ease-out;
   transition: top 0.2s ease-out, font-size 0.2s ease-out;
   pointer-events: none;
   line-height: 1.1;
 }
-.slr2-phone-form__control.slr2-phone-form__control--active .slr2-phone-form__label {
+.slr2-phone-form__control.slr2-phone-form__control--active
+  .slr2-phone-form__label {
   top: 8px;
 }
-.slr2-phone-form__control.slr2-phone-form__control--invalid .slr2-phone-form__label {
+.slr2-phone-form__control.slr2-phone-form__control--invalid
+  .slr2-phone-form__label {
   color: #ff0000;
 }
-.slr2-phone-form__control.slr2-phone-form__control--disabled .slr2-phone-form__label {
+.slr2-phone-form__control.slr2-phone-form__control--disabled
+  .slr2-phone-form__label {
   color: #cccccc;
 }
 .slr2-phone-form__input {
   height: 48px;
   width: 100%;
-  padding: 20px 16px 2px;
+  padding: 20px 16px 6px;
   border-radius: 4px;
-  border: 1px solid var(--twpx-input-border-default, #E2E2E2);
-  background: var(--twpx-input-color-default, #F9F9F9);
-  color: var(--twpx-input-text-default, #3B3B3B);
+  border: 1px solid var(--twpx-input-border-default, #e2e2e2);
+  background: var(--twpx-input-color-default, #f9f9f9);
+  color: var(--twpx-input-text-default, #3b3b3b);
   font-size: 16px;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
@@ -186,7 +190,8 @@
 .slr2-phone-form__control .slr2-phone-form__input:hover {
   outline: none !important;
 }
-.slr2-phone-form__control.slr2-phone-form__control--invalid .slr2-phone-form__input {
+.slr2-phone-form__control.slr2-phone-form__control--invalid
+  .slr2-phone-form__input {
   background-color: #fff !important;
   border-color: #ff0000 !important;
   outline: none !important;
@@ -197,8 +202,8 @@
   top: 16px;
   right: 16px;
   cursor: pointer;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   opacity: 0;
   pointer-events: none;
   z-index: 10;
@@ -208,7 +213,7 @@
   pointer-events: auto;
 }
 .slr2-phone-form__control--clearable .slr2-phone-form__clear:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-phone-form__button {
   display: flex;
@@ -223,11 +228,11 @@
   color: #fff;
   text-align: center;
   cursor: pointer;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .slr2-phone-form__button:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-phone-form__button.slr2-phone-form__button--disabled {
   opacity: 0.1;
@@ -244,8 +249,12 @@
 .slr2-phone-form__button.slr2-phone-form__button--load-circle:hover,
 .slr2-phone-form__button.slr2-phone-form__button--load-circle:focus,
 .slr2-phone-form__button.slr2-phone-form__button--load-circle:active,
-.slr2-phone-form__button.slr2-phone-form__button--load-circle:not(:disabled):not(.vue-button--disabled).active,
-.slr2-phone-form__button.slr2-phone-form__button--load-circle:not(:disabled):not(.vue-button--disabled):active,
+.slr2-phone-form__button.slr2-phone-form__button--load-circle:not(
+    :disabled
+  ):not(.vue-button--disabled).active,
+.slr2-phone-form__button.slr2-phone-form__button--load-circle:not(
+    :disabled
+  ):not(.vue-button--disabled):active,
 .slr2-phone-form__button.slr2-phone-form__button--load-circle a {
   color: transparent !important;
 }
@@ -268,8 +277,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   display: grid;
   gap: 8px;
   opacity: 0;
@@ -282,7 +291,7 @@
   align-items: center;
   gap: var(--twpx-block-gap-m, 16px);
   border-radius: var(--twpx-button-border-radius-s, 4px);
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -295,11 +304,11 @@
 }
 .slr2-phone-form__message--success {
   color: #000;
-  background: var(--twpx-notification-background-color-success, #ACEEA8);
+  background: var(--twpx-notification-background-color-success, #aceea8);
 }
 .slr2-phone-form__message--error {
-  color: #FFF;
-  background: var(--twpx-notification-background-color-error, #F00);
+  color: #fff;
+  background: var(--twpx-notification-background-color-error, #f00);
 }
 .slr2-phone-form__message-button {
   display: flex;
@@ -309,18 +318,18 @@
   align-items: center;
   border-radius: var(--twpx-button-border-radius-s, 4px);
   background: var(--base-colors-balck, #000);
-  color: #FFF;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  color: #fff;
+  font-family: Roboto, arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 14px; /* 100% */
   cursor: pointer;
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .slr2-phone-form__message-button:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-phone-form-container {
   position: relative;
@@ -334,6 +343,9 @@
 }
 
 @media (max-width: 767px) {
+  .slr2-phone-clear {
+    display: none;
+  }
   #slr2PhoneElem .slr2-phone-popup {
     display: block;
     width: calc(100% - 24px * 2);
@@ -353,11 +365,13 @@
   .slr2-phone-store-name {
     margin-bottom: 8px;
   }
-  .slr2-phone-tel {}
+  .slr2-phone-tel {
+  }
   .slr2-phone-form {
     padding-top: 16px;
   }
-  .slr2-phone-form__title {}
+  .slr2-phone-form__title {
+  }
   .slr2-phone-form__content {
     display: grid;
     gap: var(--twpx-block-gap-s, 8px);
@@ -370,7 +384,7 @@
     width: 100%;
   }
   .slr2-phone-consent {
-    font-size: 10px;
+    font-size: 12px;
   }
   #slr2PhoneElem .slr2-phone-tel-main a,
   #slr2PhoneElem .slr2-phone-tel a {

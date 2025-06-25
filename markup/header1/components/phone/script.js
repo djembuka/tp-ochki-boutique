@@ -18,12 +18,20 @@
       this.clear = this.control.querySelector('.slr2-phone-form__clear');
       this.button = this.form.querySelector('.slr2-phone-form__button');
 
-      this.messageContainer = this.container.querySelector('.slr2-phone-form__message-container');
-      this.message = this.messageContainer.querySelector('.slr2-phone-form__message');
-      this.messageButton = this.messageContainer.querySelector('.slr2-phone-form__message-button');
+      this.messageContainer = this.container.querySelector(
+        '.slr2-phone-form__message-container'
+      );
+      this.message = this.messageContainer.querySelector(
+        '.slr2-phone-form__message'
+      );
+      this.messageButton = this.messageContainer.querySelector(
+        '.slr2-phone-form__message-button'
+      );
 
-      this.successText = 'Спасибо! Ваш запрос успешно отправлен. Наш специалист свяжется с вами в ближайшее время.';
-      this.errorText = 'Что-то пошло не так. Пожалуйста, попробуйте отправить форму ещё раз!';
+      this.successText =
+        'Спасибо! Ваш запрос успешно отправлен. Наш специалист свяжется с вами в ближайшее время.';
+      this.errorText =
+        'Что-то пошло не так. Пожалуйста, попробуйте отправить форму ещё раз!';
 
       this.successIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
         <path d="M8.93457 15.7376C9.73658 17.0333 11.1448 17.8927 12.748 17.8927C14.3512 17.8927 15.7593 17.0333 16.5613 15.7376M10.2255 9.09277H7.93555M23.748 12.5303C23.748 18.6054 18.8232 23.5303 12.748 23.5303C6.67291 23.5303 1.74805 18.6054 1.74805 12.5303C1.74805 6.45514 6.67291 1.53027 12.748 1.53027C18.8232 1.53027 23.748 6.45514 23.748 12.5303ZM16.048 9.09277H16.1455V9.18086H16.048V9.09277Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -35,21 +43,21 @@
       this.init();
     }
 
-    init() {  
+    init() {
       this.input.addEventListener('keydown', (e) => {
-        this.keydown(e)
+        this.keydown(e);
       });
-      
+
       this.input.addEventListener('keyup', (e) => {
-        this.keyup(e)
+        this.keyup(e);
       });
 
       this.input.addEventListener('focus', (e) => {
-        this.focus(e)
+        this.focus(e);
       });
 
       this.input.addEventListener('blur', (e) => {
-        this.blur(e)
+        this.blur(e);
       });
 
       this.clear.addEventListener('click', (e) => {
@@ -63,7 +71,7 @@
         e.preventDefault();
         this.submit();
       });
-      
+
       this.form.addEventListener('submit', (e) => {
         e.preventDefault();
         this.submit();
@@ -72,7 +80,7 @@
       this.messageButton.addEventListener('click', (e) => {
         e.preventDefault();
         this.hideMessage();
-      })
+      });
     }
 
     submit() {
@@ -82,7 +90,7 @@
       } else {
         this.input.classList.remove('slr2-phone-form__control--invalid');
       }
-      
+
       const url = this.form.getAttribute('action');
       const method = this.form.getAttribute('method');
 
@@ -90,31 +98,36 @@
 
       fetch(url, {
         method,
-        body: new FormData(this.form)
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      }).then((result) => {
-        this.button.classList.remove('slr2-phone-form__button--load-circle');
-        if (result && result.SUCCESS && result.SUCCESS === 'Y') {
-          this.showMessage('success');
-        } else {
-          this.showMessage('error');
-        }
-        setTimeout(() => {
-          this.hideMessage();
-        }, 3000);
-      }).catch(error => {
-        console.log(error)
-      });
+        body: new FormData(this.form),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((result) => {
+          this.button.classList.remove('slr2-phone-form__button--load-circle');
+          if (result && result.SUCCESS && result.SUCCESS === 'Y') {
+            this.showMessage('success');
+          } else {
+            this.showMessage('error');
+          }
+          setTimeout(() => {
+            this.hideMessage();
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     showMessage(type) {
       this.message.className = `slr2-phone-form__message slr2-phone-form__message--${type}`;
       this.message.innerHTML = `
           ${this[type + 'Icon']}
-          <div class="slr2-phone-form__message-text">${this[type + 'Text']}</div>
+          <div class="slr2-phone-form__message-text">${
+            this[type + 'Text']
+          }</div>
       `;
 
       this.container.classList.add('slr2-phone-form-container--message');
@@ -129,7 +142,7 @@
       this.input.focus();
       this.control.classList.remove('slr2-phone-form__control--clearable');
     }
-  
+
     keydown(e) {
       this.input.classList.remove('slr2-phone-form__control--invalid');
       this.inputphone(e);
@@ -152,10 +165,12 @@
     }
 
     focus() {
-      if (this.input.value === '') {
-        this.input.value = '+7 ';
-      }
-      this.control.classList.add('slr2-phone-form__control--active')
+      setTimeout(() => {
+        if (this.input.value === '') {
+          this.input.value = '+7 ';
+        }
+        this.control.classList.add('slr2-phone-form__control--active');
+      }, 0);
     }
 
     blur() {
@@ -163,14 +178,14 @@
         this.input.value = '';
       }
       if (this.input.value === '') {
-        this.control.classList.remove('slr2-phone-form__control--active')
+        this.control.classList.remove('slr2-phone-form__control--active');
       }
     }
-  
+
     inputphone(e) {
       let key = e.key;
       let not = key.replace(/([0-9])/, 1);
-  
+
       if (not == 1) {
         if (this.input.value.length < 3 || this.input.value === '') {
           this.input.value = '+7 ';
@@ -191,7 +206,7 @@
         e.preventDefault();
       }
     }
-  
+
     validate() {
       const regexp = /^\+7\s?\d{3}\s?\d{3}\s?\d{2}\s?\d{2}$/;
 
@@ -213,7 +228,7 @@
 
     init() {
       this.wrapper.addEventListener('click', (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.classList.contains('slr2-phone-wrapper')) {
           this.hide();
         }
@@ -275,8 +290,8 @@
     const elem = document.createElement('div');
     elem.id = 'slr2PhoneElem';
     elem.innerHTML = result;
-    
-    elem.querySelectorAll('.twpx-control-tel').forEach(c => {
+
+    elem.querySelectorAll('.twpx-control-tel').forEach((c) => {
       new TwpxControlTel(c);
     });
 

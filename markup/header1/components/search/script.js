@@ -9,6 +9,7 @@
   class Slr2SearchComponent {
     constructor(elem) {
       this.elem = elem;
+      this.container = this.elem.querySelector('.slr2-search-container');
       this.wrapper = this.elem.querySelector('.slr2-search-wrapper');
       this.input = this.elem.querySelector('.slr2-search-input');
       this.clear = this.elem.querySelector('.slr2-search-clear');
@@ -36,6 +37,14 @@
         } else {
           this.elem.classList.remove('slr2-search--filled');
         }
+      });
+
+      this.input.addEventListener('focus', () => {
+        this.container.classList.add('slr2-search-container--focus');
+      });
+
+      this.input.addEventListener('blur', () => {
+        this.container.classList.remove('slr2-search-container--focus');
       });
 
       document.addEventListener(
@@ -155,7 +164,9 @@
 
     // window.seller2[componentObj.component].styleContainer = div;
 
-    const linkElem = document.getElementById('slr2SearchElem').querySelector('link');
+    const linkElem = document
+      .getElementById('slr2SearchElem')
+      .querySelector('link');
 
     if (linkElem) {
       linkElem.onload = () => {

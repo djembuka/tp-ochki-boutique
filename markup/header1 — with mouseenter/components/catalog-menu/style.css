@@ -17,7 +17,7 @@
   overflow: hidden;
   background: var(--slr2-color-primary);
   color: #fff;
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: robotoregular, arial, sans-serif;
   z-index: 100;
 }
 .slr2-catalog-menu-grid-container {
@@ -108,7 +108,7 @@
 }
 
 .slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(10) {
-  transition-delay: 0.30s;
+  transition-delay: 0.3s;
 }
 
 .slr2-slide-toggle--animate .slr2-catalog-menu-grid-item a:nth-of-type(11) {
@@ -142,7 +142,7 @@ a.slr2-catalog-menu-service-item img {
   z-index: 10;
 }
 a.slr2-catalog-menu-service-item .slr2-catalog-menu-service-text {
-  color: #FFF;
+  color: #fff;
 
   /* default */
   font-size: 14px;

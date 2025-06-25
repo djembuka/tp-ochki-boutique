@@ -150,11 +150,11 @@ body.slr2-body--no-scroll {
   padding: var(--twpx-block-padding-m, 16px) 0;
 }
 .slr2-header1 a {
-  -webkit-transition: opacity .3s ease;
-  transition: opacity .3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .slr2-header1 a:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 .slr2-header1 a,
 .slr2-header1 a:hover {
@@ -167,6 +167,7 @@ body.slr2-body--no-scroll {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 32px;
   height: 100%;
 }
 .slr2-header1__left {
@@ -199,7 +200,7 @@ body.slr2-body--no-scroll {
 }
 .slr2-header1__menu menu {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 24px;
   overflow: hidden;
   height: 32px;
@@ -207,7 +208,7 @@ body.slr2-body--no-scroll {
   padding: 0;
 }
 .slr2-header1__menu-item {
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -218,7 +219,7 @@ body.slr2-body--no-scroll {
   justify-content: flex-start;
   gap: 8px;
   white-space: nowrap;
-  visibility: hidden;
+  /* visibility: hidden; */
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
@@ -232,7 +233,7 @@ body.slr2-body--no-scroll {
   left: 0;
   width: 100%;
   height: 19px;
-  background-color: #FFE100;
+  background-color: #ffe100;
   z-index: 10;
 }
 a.slr2-header1__menu-item {
@@ -248,7 +249,7 @@ a.slr2-header1__menu-item:hover {
   display: none;
 }
 .slr2-header1__menu a.slr2-header1__menu-item--active {
-  color: var(--base-blue, #3498DB) !important;
+  color: var(--base-blue, #3498db) !important;
 }
 .slr2-header1__menu a,
 .slr2-header1__menu a:hover,
@@ -265,10 +266,13 @@ a.slr2-header1__menu-item:hover {
 .slr2-header1__menu a.slr2-menu-item--special:visited,
 .slr2-header1__menu a.slr2-menu-item--special:active,
 .slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special,
-.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:hover,
-.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:visited,
-.slr2-header1__menu a.slr2-header1__menu-item--active.slr2-menu-item--special:active {
-  color: var(--base-colors-yellow, #FFE100) !important;
+.slr2-header1__menu
+  a.slr2-header1__menu-item--active.slr2-menu-item--special:hover,
+.slr2-header1__menu
+  a.slr2-header1__menu-item--active.slr2-menu-item--special:visited,
+.slr2-header1__menu
+  a.slr2-header1__menu-item--active.slr2-menu-item--special:active {
+  color: var(--base-colors-yellow, #ffe100) !important;
 }
 /*Icons*/
 .slr2-header1__icons {
@@ -363,14 +367,14 @@ a.slr2-header1__menu-item:hover {
   right: 0;
   -webkit-transform: translateX(50%);
   transform: translateX(50%);
-  background-color: #FFE100;
+  background-color: #ffe100;
   border-radius: 6px;
   padding: 2px;
   display: none;
   justify-content: center;
   align-items: center;
   color: var(--slr2-header1-basket-count-color);
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: Roboto, arial, sans-serif;
   font-size: 8px;
   font-weight: 400;
   line-height: 8px;
@@ -440,15 +444,18 @@ a.slr2-header1__menu-item:hover {
 .slr2-header1__phone-icon[data-slr2toggle]:not(.slr2--component-loaded) img {
   display: none !important;
 }
-
-@media (min-width: 1200px) {
+@media (min-width: 767px) {
+  .slr2-header1__favorite-icon,
+  .slr2-header1__stores-icon {
+    display: flex;
+  }
+}
+@media (min-width: 1400px) {
   .slr2-header1 {
     height: 70px;
     padding: var(--twpx-block-padding-m, 16px) 0;
   }
-  .slr2-header1__menu,
-  .slr2-header1__favorite-icon,
-  .slr2-header1__stores-icon {
+  .slr2-header1__menu {
     display: flex;
   }
   .slr2-header1__mobile-menu-icon {
@@ -525,5 +532,14 @@ a.slr2-header1__menu-item:hover {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+@media all and (max-width: 700px) {
+  #footerTabs .wrapper,
+  #footerTabsCaption .wrapper,
+  .limiter,
+  #footer .limiter,
+  #main .limiter {
+    padding: 0 16px !important;
   }
 }

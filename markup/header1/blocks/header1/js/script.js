@@ -71,9 +71,9 @@
     }
   }
 
-  window.addEventListener('load', () => {
-    new Slr2HeaderMenu(document.querySelector('.slr2-header1__menu'));
-  });
+  // window.addEventListener('load', () => {
+  //   new Slr2HeaderMenu(document.querySelector('.slr2-header1__menu'));
+  // });
 
   //basket count updating
   window.addEventListener('DOMContentLoaded', () => {
@@ -83,14 +83,20 @@
       if (window.seller2[`slr2${capitalName}Component`]) {
         window.seller2[`slr2${capitalName}Component`].updateCount();
       } else {
-        document.documentElement.addEventListener(`slr2${capitalName}Loaded`, () => {
-          window.seller2[`slr2${capitalName}Component`].updateCount();
-        });
+        document.documentElement.addEventListener(
+          `slr2${capitalName}Loaded`,
+          () => {
+            window.seller2[`slr2${capitalName}Component`].updateCount();
+          }
+        );
       }
 
-      document.documentElement.addEventListener(`slr2${capitalName}CountUpdated`, (e) => {
-        onCountChanged(e.detail.count, name);
-      });
+      document.documentElement.addEventListener(
+        `slr2${capitalName}CountUpdated`,
+        (e) => {
+          onCountChanged(e.detail.count, name);
+        }
+      );
     });
   });
 

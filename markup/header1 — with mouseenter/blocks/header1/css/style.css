@@ -198,7 +198,7 @@ body.slr2-body--no-scroll {
   padding: 0;
 }
 .slr2-header1__menu-item {
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: robotoregular, arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -221,7 +221,7 @@ body.slr2-body--no-scroll {
   left: 0;
   width: 100%;
   height: 19px;
-  background-color: #FFE100;
+  background-color: #ffe100;
   z-index: 10;
 }
 a.slr2-header1__menu-item {
@@ -237,7 +237,7 @@ a.slr2-header1__menu-item:hover {
   display: none;
 }
 .slr2-header1__menu a.slr2-header1__menu-item--active {
-  color: var(--base-blue, #3498DB) !important;
+  color: var(--base-blue, #3498db) !important;
 }
 .slr2-header1__menu a,
 .slr2-header1__menu a:hover,
@@ -337,14 +337,14 @@ a.slr2-header1__menu-item:hover {
   right: 0;
   -webkit-transform: translateX(50%);
   transform: translateX(50%);
-  background-color: #FFE100;
+  background-color: #ffe100;
   border-radius: 6px;
   padding: 2px;
   display: none;
   justify-content: center;
   align-items: center;
   color: var(--slr2-header1-basket-count-color);
-  font-family: Roboto, roboto_ltregular, arial, sans-serif;
+  font-family: robotoregular, arial, sans-serif;
   font-size: 8px;
   font-weight: 400;
   line-height: 8px;
