@@ -17,12 +17,12 @@
 #slr2MobileMenuElem a.slr2-menu-item--special:active {
   color: var(--base-colors-yellow, #FFE100);
 }
-@media (min-width: 1200px) {
+@media (min-width: 1360px) {
   #slr2MobileMenuElem {
     display: none;
   }
 }
-@media (max-width: 1199px) {
+@media (max-width: 1360px) {
   #slr2MobileMenuElem {
     height: 0;
     overflow: hidden;
@@ -165,7 +165,7 @@
   #slr2MobileMenuElem .slr2-mobile-menu__sub {
     height: 0;
     margin-bottom: 1px;
-    max-height: 192px;
+    max-height: 380px;
     overflow-y: auto;
     -webkit-transition: height 0.3s ease;
     transition: height 0.3s ease;
@@ -203,7 +203,7 @@
     font-size: 20px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1360px) {
   #slr2MobileMenuElem .slr2-mobile-menu {
     display: flex;
     height: 64px;

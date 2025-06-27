@@ -29,6 +29,7 @@
       this.clear.addEventListener('click', (e) => {
         e.preventDefault();
         this.clearInput();
+        this.input.focus();
       });
 
       this.input.addEventListener('keyup', () => {
@@ -77,7 +78,6 @@
 
     clearInput() {
       this.input.value = '';
-      this.input.focus();
       this.elem.classList.remove('slr2-search--filled');
 
       document.querySelector('.title-search-result').innerHTML = '';
@@ -111,6 +111,9 @@
         this.input.focus();
         document.querySelector('body').classList.add('slr2-body--no-scroll');
       }, 0);
+
+      // Show search result
+      document.querySelector('.title-search-result').classList.remove('title-search-result--hide');
     }
 
     hide() {
@@ -118,12 +121,16 @@
       setTimeout(() => {
         this.elem.classList.remove('slr2-search--show');
         document.querySelector('body').classList.remove('slr2-body--no-scroll');
+        this.clearInput();
       }, 300);
 
       // Remove search parameter from URL
       const url = new URL(window.location.href);
       url.searchParams.delete('search');
       window.history.pushState({}, '', url);
+
+      // Hide search result
+      document.querySelector('.title-search-result').classList.add('title-search-result--hide');
     }
   }
 

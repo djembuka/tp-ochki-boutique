@@ -214,7 +214,7 @@
   }
 
   async function fetchComponent() {
-    if (!window.matchMedia('(max-width: 1199px)').matches || fetchFlag) return;
+    if (!window.matchMedia('(max-width: 1359px)').matches || fetchFlag) return;
 
     fetchFlag = true;
 
