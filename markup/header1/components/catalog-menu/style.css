@@ -16,16 +16,35 @@
   z-index: 10000;
 }
 #slr2CatalogMenuElem .slr2-catalog-menu-wrapper {
-  position: absolute;
+  position: fixed;
   top: 100px;
   left: 0;
   width: 100%;
+  max-height: calc(100vh - 80px);
   height: 0;
-  overflow: hidden;
+  overflow: auto;
   background: var(--slr2-color-primary);
   color: #fff;
   font-family: Roboto, arial, sans-serif;
-  z-index: 100;
+  z-index: 1000;
+}
+/* Scrollbar styles */
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-track {
+  background: var(--slr2-color-primary);
+  border-radius: 4px;
+}
+
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #444;
 }
 .slr2-catalog-menu-grid-container {
   display: grid;

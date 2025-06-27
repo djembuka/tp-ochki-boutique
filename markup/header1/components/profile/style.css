@@ -9,7 +9,7 @@
   z-index: 10000;
 }
 #slr2ProfileElem .slr2-profile-wrapper {
-  position: absolute;
+  position: fixed;
   top: 100px;
   right: calc((100vw - 1480px) / 2);
   height: 0;

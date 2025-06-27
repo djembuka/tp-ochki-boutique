@@ -2,6 +2,13 @@
 #slr2MobileMenuElem * {
   box-sizing: border-box;
 }
+#slr2MobileMenuElem {
+  position: fixed;
+  top: 70px;
+  width: 100%;
+  max-height: calc(100vh - 70px);
+  z-index: 1000;
+}
 #slr2MobileMenuElem .slr2-mobile-menu {
   background-color: var(--slr2-color-primary);
   font-size: 16px;
@@ -29,7 +36,7 @@
   }
   #slr2MobileMenuElem.slr2-mobile-menu--show {
     height: auto;
-    overflow: visible;
+    overflow: auto;
   }
   #slr2MobileMenuElem .slr2-mobile-menu {
     padding: 0 !important;
@@ -223,6 +230,9 @@
   }
 }
 @media (max-width: 575px) {
+  #slr2MobileMenuElem {
+    top: 64px;
+  }
   #slr2MobileMenuElem .slr2-mobile-menu__title a,
   #slr2MobileMenuElem .slr2-mobile-menu__link {
     padding: 0 35px 0 16px;
