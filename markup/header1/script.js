@@ -54,19 +54,44 @@ window.seller2.toggleButtons = () => {
       if (!elem.classList.contains('slr2--component-loaded')) {
         //делаем элемент видимым и кликабельным
         elem.classList.add('slr2--component-loaded');
-        //обрабатываем клик
-        if (window.seller2[iconObj.component][iconObj.method]){
-          elem.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            //вызываем метод show
-            if (
-              window.seller2[iconObj.component] &&
-              window.seller2[iconObj.component][iconObj.method]
-            ) {
-              window.seller2[iconObj.component][iconObj.method](e);
-            }
-          });
+
+        const com = window.seller2[iconObj.component];
+        if (iconObj.name === 'catalog-menu' /*|| iconObj.name === 'profile'*/) {
+          // обработываем наведение
+          if (com.show && com.hide) {
+            elem.addEventListener('mouseenter', (e) => {
+              if (iconObj.name === 'catalog-menu') {
+                console.log('mouseenter i', com.flag)
+                com.flag[elem.getAttribute('data-slr2type')] = true;
+                com.toggle(e);
+                elem.classList.add('slr2--show');
+              } else {
+                com.flag = true;
+                com.show(e);
+                // elem.classList.add('slr2--show');
+              }
+            });
+            elem.addEventListener('mouseleave', (e) => {
+              if (iconObj.name === 'catalog-menu') {
+                console.log('mouseleave i', com.flag)
+                com.flag[elem.getAttribute('data-slr2type')] = false;
+                com.toggle(e);
+                elem.classList.remove('slr2--show');
+              } else {
+                com.flag = false;
+                com.hide(e);
+                // elem.classList.add('slr2--show');
+              }
+            });
+          }
+        } else {
+          //обрабатываем клик
+          if (com[iconObj.method]){
+            elem.addEventListener('click', (e) => {
+              e.preventDefault();
+              com[iconObj.method](e);
+            });
+          }
         }
       }
     });

@@ -13,24 +13,6 @@
       this.elem = elem;
       this.name = 'catalog-menu';
       this.wrapper = this.elem.querySelector('.slr2-catalog-menu-wrapper');
-
-      this.flag = {};
-      document.querySelectorAll(`[data-slr2toggle="${this.name}"]`).forEach(item => {
-        this.flag[item.getAttribute('data-slr2type')] = false;
-      })
-
-      this.elem.querySelectorAll('.slr2-catalog-menu-wrapper').forEach(w => {
-        w.addEventListener('mouseenter', (e) => {
-          console.log('mouseenter w', this.flag[w.getAttribute('data-slr2type')])
-          this.flag[w.getAttribute('data-slr2type')] = true;
-          this.toggle(e);
-        });
-        w.addEventListener('mouseleave', (e) => {
-          console.log('mouseleave w', this.flag[w.getAttribute('data-slr2type')])
-          this.flag[w.getAttribute('data-slr2type')] = false;
-          this.toggle(e);
-        });
-      })
     }
 
     documentClick(event) {
@@ -45,7 +27,7 @@
       ) {
         return;
       }
-      // this.hide();
+      this.hide();
     }
 
     toggle(e) {  
@@ -53,35 +35,18 @@
       const type = elem.getAttribute('data-slr2type');
       this.wrapper = this.elem.querySelector('.slr2-slide-toggle--show');
 
-      // equal
-      // if (this.wrapper) {
-      //   if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
-      //     this.activeStyle(elem);
-      //     this.showWhenOpen(elem)
-      //   } else {
-      //     this.activeStyle();
-      //     this.hide();
-      //   }
-      // } else {
-      //   this.activeStyle(elem);
-      //   this.show(elem)
-      // }
-
-      
-      if (!this.flag[type]) {
-        this.activeStyle(elem);
-        this.hide();
-        // this.hide(menuItem, wrapper);
-      } else if (!this.wrapper) {
-        this.activeStyle(elem);
-        this.show(elem)
-        // this.show(menuItem, wrapper)
+      if (this.wrapper) {
+        if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
+          this.activeStyle(elem);
+          this.showWhenOpen(elem)
+        } else {
+          this.activeStyle();
+          this.hide();
+        }
       } else {
         this.activeStyle(elem);
-        this.showWhenOpen(elem)
-        // this.showWhenOpen(menuItem, wrapper)
+        this.show(elem)
       }
-      
     }
 
     show(elem) {
@@ -102,8 +67,6 @@
         header.getBoundingClientRect().top + header.clientHeight + 'px';
       this.slideDown(this.wrapper);
 
-      this.menuOverflow('add');
-
       // set type of catalog menu
 
     }
@@ -111,7 +74,6 @@
     hide() {
       this.slideUp(this.wrapper);
       this.activeStyle();
-      this.menuOverflow('remove');
     }
 
     showWhenOpen(elem) {
@@ -128,7 +90,6 @@
         this.wrapper.style.top =
         header.getBoundingClientRect().top + header.clientHeight + 'px';
         this.slideDown(this.wrapper, height);
-        this.menuOverflow('add');
       }, 0);
     }
 
@@ -142,17 +103,6 @@
       }
     }
 
-    menuOverflow(method) {
-      switch(method) {
-        case 'add':
-          document.querySelector('.slr2-header1__menu menu').style.overflow = 'visible';
-          break;
-        case 'remove':
-          document.querySelector('.slr2-header1__menu menu').removeAttribute('style');
-          break;
-      }
-    }
-
     slideDown(block, h) {
       if (!block.classList.contains('slr2-slide-toggle')) {
         block.classList.add('slr2-slide-toggle');
@@ -161,17 +111,17 @@
         block.classList.add('slr2-slide-toggle--show');
         block.style.height = 'auto';
 
-        // var height = block.clientHeight + 'px';
+        var height = block.clientHeight + 'px';
 
-        // block.style.height = h || '0px';
+        block.style.height = h || '0px';
 
-        // setTimeout(() => {
-          // block.style.height = height;
-        // }, 100);
+        setTimeout(() => {
+          block.style.height = height;
+        }, 100);
 
-        // setTimeout(() => {
+        setTimeout(() => {
           block.classList.add('slr2-slide-toggle--animate');
-        // }, 500);
+        }, 500);
       }
     }
 
@@ -188,15 +138,15 @@
           block.style.height = '0px';
           block.classList.remove('slr2-slide-toggle--animate');
 
-          // block.addEventListener(
-          //   'transitionend',
-          //   () => {
+          block.addEventListener(
+            'transitionend',
+            () => {
               block.classList.remove('slr2-slide-toggle--show');
-          //   },
-          //   {
-          //     once: true,
-          //   }
-          // );
+            },
+            {
+              once: true,
+            }
+          );
         }
       }
     }

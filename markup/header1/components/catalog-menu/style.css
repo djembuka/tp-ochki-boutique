@@ -109,6 +109,11 @@
   opacity: 0;
 }
 
+#slr2CatalogMenuElem .slr2-slide-toggle {
+  -webkit-transition: unset;
+  transition: unset;
+}
+
 #slr2CatalogMenuElem
   .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item

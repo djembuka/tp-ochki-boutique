@@ -1,5 +1,5 @@
 (() => {
-  class Slr2HeaderMenu {
+  /*class Slr2HeaderMenu {
     constructor(elem) {
       this.elem = elem;
       this.menuItems = this.elem.querySelectorAll('.slr2-header1__menu-item');
@@ -73,7 +73,7 @@
 
   window.addEventListener('load', () => {
     new Slr2HeaderMenu(document.querySelector('.slr2-header1__menu'));
-  });
+  });*/
 
   //basket count updating
   window.addEventListener('DOMContentLoaded', () => {
