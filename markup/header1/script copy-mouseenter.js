@@ -57,26 +57,30 @@ window.seller2.toggleButtons = () => {
 
         const com = window.seller2[iconObj.component];
         if (iconObj.name === 'catalog-menu' /*|| iconObj.name === 'profile'*/) {
-          // обрабатываем наведение
+          // обработываем наведение
           if (com.show && com.hide) {
             elem.addEventListener('mouseenter', (e) => {
-              if (elem.parentNode.classList.contains('menu-collapse__sub'))
-                  return;
-
-              com.show(e);
-              elem.classList.add('slr2--show');
+              if (iconObj.name === 'catalog-menu') {
+                console.log('mouseenter i', com.flag)
+                com.flag[elem.getAttribute('data-slr2type')] = true;
+                com.toggle(e);
+                elem.classList.add('slr2--show');
+              } else {
+                com.flag = true;
+                com.show(e);
+                // elem.classList.add('slr2--show');
+              }
             });
             elem.addEventListener('mouseleave', (e) => {
-              if (elem.parentNode.classList.contains('menu-collapse__sub'))
-                  return;
-
-              com.hide(e);
-              elem.classList.remove('slr2--show');
-            });
-            elem.addEventListener('click', (e) => {
-              if (elem.parentNode.classList.contains('menu-collapse__sub')) {
-                e.preventDefault();
-                com[iconObj.method](e);
+              if (iconObj.name === 'catalog-menu') {
+                console.log('mouseleave i', com.flag)
+                com.flag[elem.getAttribute('data-slr2type')] = false;
+                com.toggle(e);
+                elem.classList.remove('slr2--show');
+              } else {
+                com.flag = false;
+                com.hide(e);
+                // elem.classList.add('slr2--show');
               }
             });
           }

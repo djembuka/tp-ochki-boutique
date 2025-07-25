@@ -15,7 +15,7 @@
   opacity: 1;
   z-index: 10000;
 }
-#slr2CatalogMenuElem .slr2-catalog-menu__wrapper {
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper {
   position: fixed;
   top: 100px;
   left: 0;
@@ -29,37 +29,30 @@
   z-index: 1000;
 }
 /* Scrollbar styles */
-#slr2CatalogMenuElem .slr2-catalog-menu__wrapper::-webkit-scrollbar {
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar {
   width: 8px;
 }
 
-#slr2CatalogMenuElem .slr2-catalog-menu__wrapper::-webkit-scrollbar-track {
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-track {
   background: var(--slr2-color-primary);
   border-radius: 4px;
 }
 
-#slr2CatalogMenuElem .slr2-catalog-menu__wrapper::-webkit-scrollbar-thumb {
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
 
-#slr2CatalogMenuElem .slr2-catalog-menu__wrapper::-webkit-scrollbar-thumb:hover {
+#slr2CatalogMenuElem .slr2-catalog-menu-wrapper::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
 .slr2-catalog-menu-grid-container {
-  padding: var(--twpx-block-padding-xl, 32px) 0;
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); */
   grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
-  align-items: flex-start;
-}
-.slr2-catalog-menu-content[data-slr2type='submenu_additional'] .slr2-catalog-menu-grid-container {
-  grid-template-columns: repeat(3, 1fr);
+  padding: var(--twpx-block-padding-xl, 32px) 0;
 }
 .slr2-catalog-menu-grid-item {
   display: grid;
-  align-items: start;
 }
 .slr2-catalog-menu-grid-sub {
   padding-left: 16px;
@@ -121,15 +114,8 @@
   transition: unset;
 }
 
-#slr2CatalogMenuElem .slr2-catalog-menu-content {
-  display: none;
-}
-#slr2CatalogMenuElem .slr2-catalog-menu-content.slr2-content--show {
-  display: block;
-}
-
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a {
   transform: translateX(0);
@@ -137,147 +123,147 @@
   opacity: 1;
 }
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:hover {
   opacity: 0.7;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(1) {
   transition-delay: 0.03s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(2) {
   transition-delay: 0.06s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(3) {
   transition-delay: 0.09s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(4) {
   transition-delay: 0.12s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(5) {
   transition-delay: 0.15s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(6) {
   transition-delay: 0.18s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(7) {
   transition-delay: 0.21s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(8) {
   transition-delay: 0.24s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(9) {
   transition-delay: 0.27s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(10) {
   transition-delay: 0.3s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(11) {
   transition-delay: 0.33s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(12) {
   transition-delay: 0.36s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(13) {
   transition-delay: 0.39s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(14) {
   transition-delay: 0.42s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(15) {
   transition-delay: 0.45s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(16) {
   transition-delay: 0.48s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(17) {
   transition-delay: 0.51s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(18) {
   transition-delay: 0.54s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(19) {
   transition-delay: 0.57s;
 }
 
 #slr2CatalogMenuElem
-  .slr2-content--animate
+  .slr2-slide-toggle--animate
   .slr2-catalog-menu-grid-item
   a:nth-of-type(20) {
   transition-delay: 0.6s;

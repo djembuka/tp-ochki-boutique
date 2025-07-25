@@ -1,5 +1,5 @@
 (() => {
-  class Slr2HeaderMenu {
+  /*class Slr2HeaderMenu {
     constructor(elem) {
       this.elem = elem;
       this.menuItems = this.elem.querySelectorAll('.slr2-header1__menu-item');
@@ -71,9 +71,120 @@
     }
   }
 
-  // window.addEventListener('load', () => {
-  //   new Slr2HeaderMenu(document.querySelector('.slr2-header1__menu'));
-  // });
+  window.addEventListener('load', () => {
+    new Slr2HeaderMenu(document.querySelector('.slr2-header1__menu'));
+  });
+  */
+
+  class slr2MenuCollapse {
+    constructor(element) {
+      this.element = element;
+      this.init();
+      this.events();
+    }
+
+    init() {
+      let menuWidth = this.element.getBoundingClientRect().width;
+      const items = this.element.querySelectorAll('.menu-collapse__item');
+      let itemsWidth = 0;
+      let edgeIndex;
+
+      items.forEach((item, index) => {
+        itemsWidth += item.getBoundingClientRect().width;
+
+        let summ = itemsWidth + index * 24;
+        if (index != items.length - 1) {
+          summ += (16 + 20);
+        }
+
+        if (summ > menuWidth && edgeIndex === undefined) {
+          edgeIndex = index - 1;
+        }
+      });
+
+      //more button
+      const moreButton = document.createElement('div');
+      moreButton.classList.add('menu-collapse__more');
+      this.element.appendChild(moreButton);
+
+      const subMenu = document.createElement('div');
+      subMenu.classList.add('menu-collapse__sub');
+      moreButton.appendChild(subMenu);
+
+      let showInterval;
+      moreButton.addEventListener('mouseenter', (e) => {
+        clearInterval(showInterval);
+        moreButton.classList.add('menu-collapse__more--show');
+      });
+      moreButton.addEventListener('mouseleave', () => {
+        showInterval = setTimeout(() => {
+          moreButton.classList.remove('menu-collapse__more--show');
+        }, 200);
+      });
+
+      //append items to submenu
+      if (!edgeIndex || edgeIndex === items.length) {
+        this.element.classList.add('menu-collapse--no-more');
+      } else {
+        items.forEach((item, index) => {
+          if (index > edgeIndex) {
+            subMenu.appendChild(item);
+          }
+        });
+      }
+
+      this.element.classList.add('menu-collapse--visible');
+      this.element.classList.add('menu-collapse--ready');
+    }
+
+    events() {
+      window.addEventListener('resize', () => {
+        //hide submenu
+        this.element.classList.remove('menu-collapse--visible');
+        //move items back
+        const subMenu = this.element.querySelector('.menu-collapse__sub');
+        const moreButton = this.element.querySelector('.menu-collapse__more');
+        subMenu.querySelectorAll('.menu-collapse__item').forEach((item) => {
+          moreButton.before(item);
+        });
+  
+        const menuWidth = this.element.getBoundingClientRect().width;
+        const items = this.element.querySelectorAll('.menu-collapse__item');
+        let itemsWidth = 0;
+        let edgeIndex;
+  
+        items.forEach((item, index) => {
+          itemsWidth += item.getBoundingClientRect().width;
+
+          let summ = itemsWidth + index * 24;
+          if (index != items.length - 1) {
+            summ += (16 + 20);
+          }
+
+          if (summ > menuWidth && edgeIndex === undefined) {
+            edgeIndex = index - 1;
+          }
+        });
+  
+        if (!edgeIndex || edgeIndex === items.length) {
+          this.element.classList.add('menu-collapse--no-more');
+        } else {
+          items.forEach((item, index) => {
+            if (index > edgeIndex) {
+              subMenu.appendChild(item);
+            }
+          });
+          this.element.classList.remove('menu-collapse--no-more');
+        }
+  
+        this.element.classList.add('menu-collapse--visible');
+      });
+    }
+  }
+
+  window.addEventListener('load', () => {
+    new slr2MenuCollapse(document.querySelector('.slr2-header1__menu .menu-collapse'));
+  });
 
   //basket count updating
   window.addEventListener('DOMContentLoaded', () => {
@@ -112,89 +223,3 @@
   }
 })();
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   const icons = [
-//     {
-//       name: 'phone',
-//       event: 'slr2PhoneLoaded',
-//       component: 'slr2PhoneComponent',
-//       method: 'toggle',
-//     },
-//     {
-//       name: 'basket',
-//       event: 'slr2BasketLoaded',
-//       component: 'slr2BasketComponent',
-//       method: 'toggle',
-//     },
-//     {
-//       name: 'menu',
-//       event: 'slr2MenuLoaded',
-//       component: 'slr2MenuComponent',
-//       method: 'toggle',
-//     },
-//     {
-//       name: 'mobile-menu',
-//       event: 'slr2MobileMenuLoaded',
-//       component: 'slr2MobileMenuComponent',
-//       method: 'toggle',
-//     },
-//     {
-//       name: 'profile',
-//       event: 'slr2ProfileLoaded',
-//       component: 'slr2ProfileComponent',
-//       method: 'toggle',
-//     },
-//     {
-//       name: 'search',
-//       event: 'slr2SearchLoaded',
-//       component: 'slr2SearchComponent',
-//       method: 'toggle',
-//     },
-//   ];
-
-//   document.querySelectorAll('.slr2-header1').forEach((slr2Header1) => {
-//     icons.forEach((iconObj, index) => {
-//       slr2Header1
-//         .querySelectorAll(`.slr2-header1__${iconObj.name}-icon`)
-//         .forEach((icon) => {
-//           if (window[iconObj.component]) {
-//             onComponentLoaded(icon, iconObj);
-//           } else {
-//             document.documentElement.addEventListener(iconObj.event, () => {
-//               onComponentLoaded(icon, iconObj);
-//             });
-//           }
-//         });
-
-//       if (index === 1) {
-//         //basket
-//         if (window[iconObj.component]) {
-//           onBasketChanged(
-//             slr2Header1,
-//             iconObj,
-//             window[iconObj.component].getCount()
-//           );
-//         }
-//         document.documentElement.addEventListener(
-//           'slr2BasketCountChanged',
-//           (e) => {
-//             onBasketChanged(slr2Header1, iconObj, e.detail.count);
-//           }
-//         );
-//       }
-//     });
-//   });
-
-//   function onComponentLoaded(icon, iconObj) {
-//     icon.classList.remove('slr2--icon-preloader');
-//     icon.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       if (
-//         window[iconObj.component] &&
-//         window[iconObj.component][iconObj.method]
-//       ) {
-//         window[iconObj.component][iconObj.method]();
-//       }
-//     });
-//   }
-// });

@@ -12,21 +12,30 @@
     constructor(elem) {
       this.elem = elem;
       this.name = 'catalog-menu';
-      this.wrapper = this.elem.querySelector('.slr2-catalog-menu__wrapper');
-      this.flag = false;
+      this.wrapper = this.elem.querySelector('.slr2-catalog-menu-wrapper');
 
-      this.wrapper.addEventListener('mouseenter', (e) => {
-        this.show(e);
-      });
+      this.flag = {};
+      document.querySelectorAll(`[data-slr2toggle="${this.name}"]`).forEach(item => {
+        this.flag[item.getAttribute('data-slr2type')] = false;
+      })
 
-      this.wrapper.addEventListener('mouseleave', (e) => {
-        this.hide(e);
-      });
+      this.elem.querySelectorAll('.slr2-catalog-menu-wrapper').forEach(w => {
+        w.addEventListener('mouseenter', (e) => {
+          console.log('mouseenter w', this.flag[w.getAttribute('data-slr2type')])
+          this.flag[w.getAttribute('data-slr2type')] = true;
+          this.toggle(e);
+        });
+        w.addEventListener('mouseleave', (e) => {
+          console.log('mouseleave w', this.flag[w.getAttribute('data-slr2type')])
+          this.flag[w.getAttribute('data-slr2type')] = false;
+          this.toggle(e);
+        });
+      })
     }
 
     documentClick(event) {
       if (
-        event.target.id === this.elem.id ||
+        event.target.id === this.id ||
         event.target.closest(`#${this.elem.id}`) ||
         event.target.getAttribute('data-slr2toggle') === this.name ||
         (event.target.closest(`[data-slr2toggle]`) &&
@@ -36,27 +45,47 @@
       ) {
         return;
       }
+      // this.hide();
     }
 
-    toggle(e) {
-      // click - link from collapse sub
-      console.log(e.target)
-      const elem = e.target;
-      const type = elem.getAttribute('data-slr2type');// item
+    toggle(e) {  
+      const elem = e.target;    
+      const type = elem.getAttribute('data-slr2type');
+      this.wrapper = this.elem.querySelector('.slr2-slide-toggle--show');
 
-      if (type) {
-        const content = this.wrapper.querySelector(`[data-slr2type="${type}"]`);
-        if (!content.classList.contains('slr2-content--show')) {
-          this.show(e);
-        } else {
-          this.hide(e);
-        }
-        
+      // equal
+      // if (this.wrapper) {
+      //   if (type && type !== this.wrapper.getAttribute('data-slr2type')) {
+      //     this.activeStyle(elem);
+      //     this.showWhenOpen(elem)
+      //   } else {
+      //     this.activeStyle();
+      //     this.hide();
+      //   }
+      // } else {
+      //   this.activeStyle(elem);
+      //   this.show(elem)
+      // }
+
+      
+      if (!this.flag[type]) {
+        this.activeStyle(elem);
+        this.hide();
+        // this.hide(menuItem, wrapper);
+      } else if (!this.wrapper) {
+        this.activeStyle(elem);
+        this.show(elem)
+        // this.show(menuItem, wrapper)
+      } else {
+        this.activeStyle(elem);
+        this.showWhenOpen(elem)
+        // this.showWhenOpen(menuItem, wrapper)
       }
+      
     }
 
-    show(e) {
-      this.flag = true;
+    show(elem) {
+      this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
       this.styleContainer.removeAttribute('style');
 
       //let the site know, that the new component is going to be shown
@@ -69,43 +98,20 @@
 
       const header = document.querySelector('header');
 
-      this.wrapper.style.top = header.getBoundingClientRect().top + header.clientHeight + 'px';
+      this.wrapper.style.top =
+        header.getBoundingClientRect().top + header.clientHeight + 'px';
       this.slideDown(this.wrapper);
 
       this.menuOverflow('add');
-      
-      const type = e.target.getAttribute('data-slr2type')
-      const content = this.wrapper.querySelector(`[data-slr2type="${type}"]`);
-      if (type && content) {
 
-        const prev = this.wrapper.querySelector(`.slr2-content--animate`);
-        if (prev) {
-          prev.classList.remove('slr2-content--show', 'slr2-content--animate');
-        }
+      // set type of catalog menu
 
-        content.classList.add('slr2-content--show');
-        setTimeout(() => {
-          content.classList.add('slr2-content--animate');
-        }, 100);
-      }
     }
 
     hide() {
-      this.flag = false;
-
-      setTimeout(() => {
-        if (!this.flag) {
-
-          const prev = this.wrapper.querySelector(`.slr2-content--animate`);
-          if (prev) {
-            prev.classList.remove('slr2-content--show', 'slr2-content--animate');
-          }
-
-          this.slideUp(this.wrapper);
-          this.activeStyle();
-          this.menuOverflow('remove');
-        }
-      }, 100);
+      this.slideUp(this.wrapper);
+      this.activeStyle();
+      this.menuOverflow('remove');
     }
 
     showWhenOpen(elem) {
@@ -117,6 +123,7 @@
         this.wrapper.classList.remove('slr2-slide-toggle--show');
         this.wrapper.classList.remove('slr2-slide-toggle--animate');
 
+        this.wrapper = this.elem.querySelector(`[data-slr2type="${elem.getAttribute('data-slr2type')}"]`);
         const header = document.querySelector('header');
         this.wrapper.style.top =
         header.getBoundingClientRect().top + header.clientHeight + 'px';
@@ -244,7 +251,7 @@
           .then(result => {
             const div = document.createElement('div');
             div.setAttribute('data-slr2type', type);
-            div.className = 'slr2-catalog-menu-content';
+            div.className = 'slr2-catalog-menu-wrapper';
             div.innerHTML = result;
             return { div, type };
           });
@@ -269,17 +276,13 @@
       const elem = document.createElement('div');
       elem.id = 'slr2CatalogMenuElem';
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'slr2-catalog-menu__wrapper';
-
-      elem.append(wrapper);
       div.append(elem);
       document.querySelector('body').append(div);
       
       const results = await Promise.all(promiseArray);
       
       results.forEach(({ div, type }) => {
-        wrapper.append(div);
+        document.getElementById('slr2CatalogMenuElem').append(div);
       });
 
       //добавляем экземпляр класса в глобальное пространство
@@ -287,6 +290,7 @@
       window.seller2[componentObj.component] = new slr2CatalogMenuComponent(
         document.getElementById('slr2CatalogMenuElem')
       );
+      new slr2MenuCollapse(document.querySelector('.slr2-header1__menu .menu-collapse'));
 
       window.seller2[componentObj.component].styleContainer = div;
 
@@ -296,6 +300,112 @@
       document.documentElement.dispatchEvent(event);
     } catch (error) {
       console.error('Error loading catalog menu components:', error);
+    }
+  }
+
+  class slr2MenuCollapse {
+    constructor(element) {
+      this.element = element;
+      this.init();
+      this.events();
+    }
+
+    init() {
+      let menuWidth = this.element.getBoundingClientRect().width;
+      const items = this.element.querySelectorAll('.menu-collapse__item');
+      let itemsWidth = 0;
+      let edgeIndex;
+
+      items.forEach((item, index) => {
+        itemsWidth += item.getBoundingClientRect().width;
+
+        let summ = itemsWidth + index * 24;
+        if (index != items.length - 1) {
+          summ += (16 + 20);
+        }
+
+        if (summ > menuWidth && edgeIndex === undefined) {
+          edgeIndex = index - 1;
+        }
+      });
+
+      //more button
+      const moreButton = document.createElement('div');
+      moreButton.classList.add('menu-collapse__more');
+      this.element.appendChild(moreButton);
+
+      const subMenu = document.createElement('div');
+      subMenu.classList.add('menu-collapse__sub');
+      moreButton.appendChild(subMenu);
+
+      let showInterval;
+      moreButton.addEventListener('mouseenter', (e) => {
+        clearInterval(showInterval);
+        moreButton.classList.add('menu-collapse__more--show');
+      });
+      moreButton.addEventListener('mouseleave', () => {
+        showInterval = setTimeout(() => {
+          moreButton.classList.remove('menu-collapse__more--show');
+        }, 200);
+      });
+
+      //append items to submenu
+      if (!edgeIndex || edgeIndex === items.length) {
+        this.element.classList.add('menu-collapse--no-more');
+      } else {
+        items.forEach((item, index) => {
+          if (index > edgeIndex) {
+            subMenu.appendChild(item);
+          }
+        });
+      }
+
+      this.element.classList.add('menu-collapse--visible');
+      this.element.classList.add('menu-collapse--ready');
+    }
+
+    events() {
+      window.addEventListener('resize', () => {
+        //hide submenu
+        this.element.classList.remove('menu-collapse--visible');
+        //move items back
+        const subMenu = this.element.querySelector('.menu-collapse__sub');
+        const moreButton = this.element.querySelector('.menu-collapse__more');
+        subMenu.querySelectorAll('.menu-collapse__item').forEach((item) => {
+          moreButton.before(item);
+        });
+  
+        const menuWidth = this.element.getBoundingClientRect().width;
+        const items = this.element.querySelectorAll('.menu-collapse__item');
+        let itemsWidth = 0;
+        let edgeIndex;
+  
+        items.forEach((item, index) => {
+          itemsWidth += item.getBoundingClientRect().width;
+
+          let summ = itemsWidth + index * 24;
+          if (index != items.length - 1) {
+            summ += (16 + 20);
+          }
+
+          if (summ > menuWidth && edgeIndex === undefined) {
+            edgeIndex = index - 1;
+          }
+        });
+  
+        if (!edgeIndex || edgeIndex === items.length) {
+          this.element.classList.add('menu-collapse--no-more');
+        } else {
+          items.forEach((item, index) => {
+            if (index > edgeIndex) {
+              subMenu.appendChild(item);
+            }
+          });
+          this.element.classList.remove('menu-collapse--no-more');
+        }
+  
+        this.element.classList.add('menu-collapse--visible');
+      });
     }
   }
 })();
