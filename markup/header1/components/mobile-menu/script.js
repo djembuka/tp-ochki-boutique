@@ -69,6 +69,7 @@
     }
 
     show() {
+      console.log('show')
       this.styleContainer.removeAttribute('style');
 
       //let the site know, that the new component is going to be shown
@@ -98,6 +99,11 @@
       this.mmItems.forEach((item) => {
         this.itemActiveRemove(item);
       });
+
+      //styles - top and max-height of the main element
+      const top = (document.getElementById('bx-panel')?.clientHeight || 0) + (document.querySelector('.slr2-header1')?.clientHeight || 0);
+      this.elem.style.top = `${top}px`;
+      this.elem.style['max-height'] = `calc(100vh - ${top}px)`;
     }
 
     hide() {
