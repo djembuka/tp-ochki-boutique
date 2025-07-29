@@ -86,7 +86,7 @@
         content.classList.add('slr2-content--show');
         setTimeout(() => {
           content.classList.add('slr2-content--animate');
-        }, 100);
+        }, 0);
       }
     }
 
@@ -96,7 +96,7 @@
       setTimeout(() => {
         if (!this.flag) {
 
-          const prev = this.wrapper.querySelector(`.slr2-content--animate`);
+          const prev = this.wrapper.querySelector(`.slr2-content--show`);
           if (prev) {
             prev.classList.remove('slr2-content--show', 'slr2-content--animate');
           }
