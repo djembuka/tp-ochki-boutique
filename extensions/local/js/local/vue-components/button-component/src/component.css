@@ -1,0 +1,624 @@
+.vue-button {
+  --twpx-button-background-primary: var(--base-colors-balck, #000);
+  --twpx-button-background-secondary: #074c86;
+  --twpx-button-background-error: #f00;
+  --twpx-button-size-large: 64px;
+  --twpx-button-size-medium: 48px;
+  --twpx-button-size-small: 32px;
+  --twpx-button-border-radius-large: 8px;
+  --twpx-button-border-radius-medium: var(--twpx-button-border-radius-s, 4px);
+  --twpx-button-border-radius-small: 4px;
+}
+
+.vue-button:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+button.vue-button {
+  border: none;
+}
+[type='button']:not(:disabled),
+[type='reset']:not(:disabled),
+[type='submit']:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+.vue-button {
+  font-family: Roboto, sans-serif;
+  min-width: 158px;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  color: #fff;
+  min-height: var(--twpx-block-gap-xxl, 48px);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px; /* 100% */
+  box-sizing: border-box;
+  text-decoration: none;
+}
+@media (max-width: 767px) {
+  .vue-button {
+    display: block;
+    width: auto;
+  }
+}
+button.vue-button {
+  border: none;
+}
+.vue-button:hover {
+  opacity: 0.7;
+}
+.vue-button .icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-right: 10px;
+  vertical-align: text-bottom;
+}
+.vue-button.vue-button--30 .icon {
+  width: 16px;
+  height: 16px;
+}
+.vue-button--primary,
+.vue-button--primary:hover,
+.vue-button--primary.focus,
+.vue-button--primary:focus,
+.vue-button--primary.vue-button--disabled,
+.vue-button--primary:disabled {
+  background-color: var(--twpx-button-background-primary);
+  border-color: var(--twpx-button-background-primary);
+}
+.vue-button--primary.focus,
+.vue-button--primary:focus {
+  box-shadow: none;
+}
+.vue-button--primary:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--primary:not(:disabled):not(.vue-button--disabled):active {
+  background-color: var(--twpx-button-background-primary);
+  border-color: var(--twpx-button-background-primary);
+}
+.vue-button--primary:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--primary:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button--secondary,
+.vue-button--secondary:hover,
+.vue-button--secondary.focus,
+.vue-button--secondary:focus,
+.vue-button--secondary.vue-button--disabled,
+.vue-button--secondary:disabled {
+  background-color: var(--twpx-button-background-primary);
+  border-color: var(--twpx-button-background-primary);
+}
+.vue-button--secondary.focus,
+.vue-button--secondary:focus {
+  box-shadow: none;
+}
+.vue-button--secondary:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--secondary:not(:disabled):not(.vue-button--disabled):active {
+  background-color: var(--twpx-button-background-primary);
+  border-color: var(--twpx-button-background-primary);
+}
+.vue-button--secondary:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--secondary:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+/*More*/
+.vue-button--more,
+.vue-button--more:hover,
+.vue-button--more.focus,
+.vue-button--more:focus,
+.vue-button--more.vue-button--disabled,
+.vue-button--more:disabled {
+  color: #5f7696;
+  background-color: #f2f7ff;
+  border-color: #f2f7ff;
+}
+.vue-button--more.focus,
+.vue-button--more:focus {
+  box-shadow: none;
+}
+.vue-button--more:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--more:not(:disabled):not(.vue-button--disabled):active {
+  color: #5f7696;
+  background-color: #f2f7ff;
+  border-color: #f2f7ff;
+}
+.vue-button--more:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--more:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+/*_More_*/
+.vue-button--light,
+.vue-button--light:hover,
+.vue-button--light.focus,
+.vue-button--light:focus,
+.vue-button--light.vue-button--disabled,
+.vue-button--light:disabled {
+  color: #3b3b3b;
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+}
+.vue-button--light.focus,
+.vue-button--light:focus {
+  box-shadow: none;
+}
+.vue-button--light:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--light:not(:disabled):not(.vue-button--disabled):active {
+  color: var(--twpx-button-background-primary);
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+}
+.vue-button--light:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--light:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button--dark,
+.vue-button--dark:hover,
+.vue-button--dark.focus,
+.vue-button--dark:focus,
+.vue-button--dark.vue-button--disabled,
+.vue-button--dark:disabled {
+  color: #fff;
+  background-color: #0a355a;
+  border-color: #0a355a;
+}
+.vue-button--dark.focus,
+.vue-button--dark:focus {
+  box-shadow: none;
+}
+.vue-button--dark:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--dark:not(:disabled):not(.vue-button--disabled):active {
+  color: var(--twpx-button-background-primary);
+  background-color: #0a355a;
+  border-color: #0a355a;
+}
+.vue-button--dark:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--dark:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button--success,
+.vue-button--success:hover,
+.vue-button--success.focus,
+.vue-button--success:focus,
+.vue-button--success.vue-button--disabled,
+.vue-button--success:disabled {
+  color: #fff;
+  background-color: #74c37a;
+  border-color: #74c37a;
+}
+.vue-button--success.focus,
+.vue-button--success:focus {
+  box-shadow: none;
+}
+.vue-button--success:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--success:not(:disabled):not(.vue-button--disabled):active {
+  color: #fff;
+  background-color: #74c37a;
+  border-color: #74c37a;
+}
+.vue-button--success:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--success:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button--danger,
+.vue-button--danger:hover,
+.vue-button--danger.focus,
+.vue-button--danger:focus,
+.vue-button--danger.vue-button--disabled,
+.vue-button--danger:disabled {
+  color: #fff;
+  background-color: #f00;
+  border-color: #f00;
+}
+.vue-button--danger.focus,
+.vue-button--danger:focus {
+  box-shadow: none;
+}
+.vue-button--danger:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--danger:not(:disabled):not(.vue-button--disabled):active {
+  color: #fff;
+  background-color: #f00;
+  border-color: #f00;
+}
+.vue-button--danger:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--danger:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button--serve,
+.vue-button--serve:hover,
+.vue-button--serve:active,
+.vue-button--serve.focus,
+.vue-button--serve:focus,
+.vue-button--serve.vue-button--disabled,
+.vue-button--serve:disabled {
+  color: var(--twpx-button-text-service, #5F7696);
+  background-color: var(--twpx-button-background-service, #F2F7FF);
+  border-color: var(--twpx-button-background-service, #F2F7FF);
+}
+.vue-button--serve.focus,
+.vue-button--serve:focus {
+  box-shadow: none;
+}
+.vue-button--serve:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--serve:not(:disabled):not(.vue-button--disabled):active {
+  color: var(--twpx-button-text-service, #5F7696);
+  background-color: var(--twpx-button-background-service, #F2F7FF);
+  border-color: var(--twpx-button-background-service, #F2F7FF);
+}
+.vue-button--serve:not(:disabled):not(.vue-button--disabled).active:focus,
+.vue-button--serve:not(:disabled):not(.vue-button--disabled):active:focus {
+  box-shadow: none;
+}
+.vue-button[disabled],
+.vue-button.vue-button--disabled {
+  pointer-events: none;
+  cursor: default;
+}
+.vue-button[disabled],
+.vue-button.vue-button--disabled,
+.vue-button[disabled]:hover,
+.vue-button.vue-button--disabled:hover,
+.vue-button[disabled].focus,
+.vue-button.vue-button--disabled.focus,
+.vue-button[disabled]:focus,
+.vue-button.vue-button--disabled:focus,
+.vue-button[disabled].vue-button--disabled,
+.vue-button.vue-button--disabled.vue-button--disabled,
+.vue-button[disabled]:disabled,
+.vue-button.vue-button--disabled:disabled {
+  opacity: .1
+}
+.vue-button[disabled].focus,
+.vue-button.vue-button--disabled.focus,
+.vue-button[disabled]:focus,
+.vue-button.vue-button--disabled:focus {
+  box-shadow: none;
+}
+.vue-button--link-color {
+  border: none;
+}
+.vue-button--link-color.vue-button--light {
+  background-color: #fafafa;
+}
+.vue-button--link-color,
+.vue-button--link-color:hover,
+.vue-button--link-color.focus,
+.vue-button--link-color:focus,
+.vue-button--link-color.vue-button--disabled,
+.vue-button--link-color:disabled,
+.vue-button--link-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--link-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  color: #f2762e;
+}
+.vue-button--link-color:hover,
+.vue-button--link-color.focus,
+.vue-button--link-color:focus,
+.vue-button--link-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--link-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  background-color: #fff9f0;
+}
+.vue-button--blue-color {
+  border: none;
+}
+.vue-button--blue-color.vue-button--light {
+  background-color: #fafafa;
+}
+.vue-button--blue-color,
+.vue-button--blue-color:hover,
+.vue-button--blue-color.focus,
+.vue-button--blue-color:focus,
+.vue-button--blue-color.vue-button--disabled,
+.vue-button--blue-color:disabled,
+.vue-button--blue-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--blue-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  color: #5f7696;
+}
+.vue-button--blue-color:hover,
+.vue-button--blue-color.focus,
+.vue-button--blue-color:focus,
+.vue-button--blue-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--blue-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  background-color: #f2f7ff;
+}
+.vue-button--gray-color {
+  border: none;
+}
+.vue-button--gray-color.vue-button--light {
+  background-color: #fafafa;
+}
+.vue-button--gray-color,
+.vue-button--gray-color:hover,
+.vue-button--gray-color.focus,
+.vue-button--gray-color:focus,
+.vue-button--gray-color.vue-button--disabled,
+.vue-button--gray-color:disabled,
+.vue-button--gray-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--gray-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  color: #9b9b9b;
+}
+.vue-button--gray-color:hover,
+.vue-button--gray-color.focus,
+.vue-button--gray-color:focus,
+.vue-button--gray-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--gray-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  background-color: #fff;
+}
+.vue-button--red-color {
+  border: none;
+}
+.vue-button--red-color.vue-button--light {
+  background-color: #fafafa;
+}
+.vue-button--red-color,
+.vue-button--red-color:hover,
+.vue-button--red-color.focus,
+.vue-button--red-color:focus,
+.vue-button--red-color.vue-button--disabled,
+.vue-button--red-color:disabled,
+.vue-button--red-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--red-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  color: #f00;
+}
+.vue-button--red-color:hover,
+.vue-button--red-color.focus,
+.vue-button--red-color:focus,
+.vue-button--red-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ).active,
+.vue-button--red-color.vue-button--light:not(:disabled):not(
+    .vue-button--disabled
+  ):active {
+  background-color: #fff7f7;
+}
+
+/*Size*/
+.vue-button--wide {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .vue-button--wide-mobile {
+    width: 100%;
+  }
+}
+
+.vue-button--large {
+  height: var(--twpx-button-size-large);
+  border-radius: var(--twpx-button-border-radius-large);
+}
+.vue-button.vue-button--large {
+  min-width: 192px;
+  padding: 1rem 2rem;
+  font-weight: 400;
+  font-size: 16px;
+  gap: 16px;
+}
+.vue-button--medium {
+  height: var(--twpx-button-size-medium);
+  border-radius: var(--twpx-button-border-radius-medium);
+  padding: 8px 16px;
+}
+.vue-button.vue-button--medium {
+  min-width: 0;
+  padding: 12px 24px;
+  font-weight: 400;
+  font-size: 14px;
+  gap: 16px;
+}
+.vue-button--small {
+  height: var(--twpx-button-size-small);
+  border-radius: var(--twpx-button-border-radius-small);
+}
+.vue-button.vue-button--small {
+  min-width: 0;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-size: 12px;
+  gap: 16px;
+}
+
+.vue-button--tag {
+  font-size: 0.75rem;
+  font-weight: normal;
+  height: 28px;
+  line-height: 28px;
+  min-width: auto;
+  padding: 0 8px;
+  background-color: #fafafa;
+  border-radius: 3px;
+}
+.vue-button--tag,
+.vue-button--tag:hover,
+.vue-button--tag:focus,
+.vue-button--tag:active {
+  color: #9b9b9b;
+}
+.vue-button--load-circle {
+  position: relative;
+  cursor: default;
+  pointer-events: none;
+}
+.vue-button--load-circle,
+.vue-button--load-circle:hover,
+.vue-button--load-circle:focus,
+.vue-button--load-circle:active,
+.vue-button--load-circle:not(:disabled):not(.vue-button--disabled).active,
+.vue-button--load-circle:not(:disabled):not(.vue-button--disabled):active,
+.vue-button--load-circle a {
+  color: transparent !important;
+}
+.vue-button--load-circle:after {
+  content: '';
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: calc(50% - 15px);
+  right: calc(50% - 15px);
+  animation: load-circle 1.3s infinite linear;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-right-color: transparent;
+}
+
+/*Icon*/
+.vue-button--icon {
+  --twpx-button-background-primary: var(--base-colors-balck, #000); /* not defined */
+  --twpx-button-background-secondary: #074c86; /* not defined */
+  --twpx-button-background: #fff;
+  --twpx-button-size-large: 64px; /* not defined */
+  --twpx-button-size-medium: 32px;
+  --twpx-button-size-small: 16px; /* not defined */
+  --twpx-button-border-radius-large: 8px; /* not defined */
+  --twpx-button-border-radius-medium: 4px;
+  --twpx-button-border-radius-small: 4px; /* not defined */
+}
+.vue-button--icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--twpx-button-background);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  padding: 0;
+}
+.vue-button--icon svg {
+  flex-shrink: 0;
+}
+.vue-button--icon.vue-button--large {
+  width: var(--twpx-button-size-large);
+  height: var(--twpx-button-size-large);
+  border-radius: var(--twpx-button-border-radius-large);
+}
+.vue-button--icon.vue-button--medium {
+  width: var(--twpx-button-size-medium);
+  height: var(--twpx-button-size-medium);
+  border-radius: var(--twpx-button-border-radius-medium);
+}
+.vue-button--icon.vue-button--small {
+  width: var(--twpx-button-size-small);
+  height: var(--twpx-button-size-small);
+  border-radius: var(--twpx-button-border-radius-small);
+}
+button.vue-button--icon {
+  border: none;
+}
+.vue-button--icon:hover {
+  opacity: 0.7;
+}
+.vue-button--delete.vue-button--load-circle svg {
+  display: none;
+}
+
+/* .vue-button--icon svg path {
+  fill: none;
+  stroke: #9b9b9b;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  transition: fill 0.3s ease;
+  -webkit-transition: fill 0.3s ease;
+}
+.vue-button--icon:hover svg path {
+  stroke: var(--twpx-button-background-primary);
+}
+.vue-button--icon:active svg path {
+  stroke: #fff;
+} */
+
+/*Delete*/
+.vue-button--delete {
+  --twpx-button-background: #fff;
+}
+/*Edit*/
+.vue-button--edit {
+  --twpx-button-background: var(--twpx-button-border-service, #F0F5FC);
+}
+
+/*Remove*/
+.vue-button--remove {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  -webkit-transition: background 0.3s ease;
+  border-radius: 10px;
+}
+button.vue-button--remove {
+  border: none;
+}
+.vue-button--remove svg path {
+  fill: #9b9b9b;
+  transition: fill 0.3s ease;
+  -webkit-transition: fill 0.3s ease;
+}
+.vue-button--remove:hover svg path {
+  fill: #f00;
+}
+.vue-button--remove:active {
+  background: #f00;
+}
+.vue-button--remove:active svg path {
+  fill: #fff;
+}
+
+
+@-webkit-keyframes load-circle {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes load-circle {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}

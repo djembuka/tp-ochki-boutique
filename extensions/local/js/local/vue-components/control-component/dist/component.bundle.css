@@ -1,0 +1,97 @@
+:root {
+  --twpx-form-control-color: var(--twpx-input-text-defaults, #3b3b3b);
+  --twpx-form-control-margin-bottom: 0;
+  --twpx-form-control-background: #F9F9F9;
+  --twpx-form-control-background-blue: var(--twpx-background-light-blue, #f2f7ff);
+  --twpx-form-control-border: #E2E2E2;
+  --twpx-form-control-border-active: #888;
+  --twpx-form-control-translate: 1.1rem;
+  --twpx-form-control-translate-active: -22px;
+
+  --twpx-form-control-padding-top: 15px;
+  --twpx-form-control-padding-right: 16px;
+  --twpx-form-control-padding-bottom: 0;
+  --twpx-form-control-padding-left: 16px;
+
+  --twpx-form-control-border-radius: 4px;
+  --twpx-form-control-font-family: 'Roboto', sans-serif;
+  --twpx-form-control-font-size: 16px;
+  --twpx-form-control-font-size-active: 0.69rem;
+  --twpx-form-control-height: 48px;
+
+  /* left icon */
+  --twpx-form-control-left-icon-padding-left: 48px;
+
+  /* right icon */
+  --twpx-form-control-right-icon-padding-right: 48px;
+
+  --twpx-form-control-right-icon-size: 16px;
+  --twpx-form-control-right-icon-right: 16px;
+
+  --twpx-form-control-clear-size: 14px;
+  --twpx-form-control-clear-right: var(--twpx-form-control-right-icon-right);
+  --twpx-form-control-clear-color: #074c86;
+
+  --twpx-form-control-loader-size: var(--twpx-form-control-right-icon-size);
+  --twpx-form-control-loader-right: var(--twpx-form-control-right-icon-right);
+  --twpx-form-control-loader-color: #074c86;
+
+  --twpx-form-control-dropdown-size: var(--twpx-form-control-right-icon-size);
+  --twpx-form-control-dropdown-right: var(--twpx-form-control-right-icon-right);
+
+  /* hints */
+  --twpx-form-control-hint-active-background: var(
+    --twpx-form-control-background
+  );
+  --twpx-form-control-hint-padding: 20px;
+  --twpx-form-control-hint-font-size: 14px;
+  --twpx-form-control-hint-box-shadow: 0px 6px 10px 0px var(--twpx-form-control-background-blue);
+  --twpx-form-control-hint-border-radius: 0 0 5px 5px;
+
+  /* label */
+  --twpx-form-control-label-font-size: 12px;
+  --twpx-form-control-label-translate: 18px;
+  --twpx-form-control-active-label-translate: 9px;
+
+  --twpx-form-control-invalid-color: #ff0000;
+  --twpx-form-control-invalid-border-color: #ff0000;
+  --twpx-form-control-invalid-background-color: #fff4f4;
+
+  --twpx-form-control-disabled-color: #9b9b9b;
+  --twpx-form-control-disabled-border-color: var(
+    --twpx-form-control-disabled-background-color
+  );
+  --twpx-form-control-disabled-background-color: #fafafa;
+
+  --twpx-form-control-external-hint-font-size: 9pt;
+  --twpx-form-control-external-hint-margin: 5px 5px 0 5px;
+  --twpx-form-control-external-hint-line-height: 1.1;
+
+  /* checkbox */
+  --twpx-checkbox-border-radius: var(--twpx-text-border-radius-medium, 8px);
+}
+
+.twpx-control-component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 16px;
+}
+.twpx-control-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 48px;
+  height: 48px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}

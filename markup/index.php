@@ -15,6 +15,7 @@ $APPLICATION->SetTitle("Markup");
 		<li><a href="actions-closed/">Закрытые акции</a></li>
 		<li><a href="consent-popup/">Всплывающее окно пользовательского соглашения</a></li>
 		<li><a href="header1/">Шапка Seller 2.0</a></li>
+		<li><a href="apps/one-click-form/">Форма Купить в 1 клик</a></li>
 	</ul>
 </div>
 

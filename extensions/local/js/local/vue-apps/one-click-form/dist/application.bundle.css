@@ -1,0 +1,189 @@
+.twpx-one-click-form .vue-loader-circle {
+  height: 400px;
+}
+.twpx-one-click-form .twpx-modal-any-content-close {
+  top: calc(16px + 24px);
+  right: calc(16px + 24px);
+}
+.twpx-one-click-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+.twpx-one-click-form__close {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 18px;
+}
+.twpx-one-click-form__form__content {
+  display: grid;
+  gap: var(--twpx-block-gap-s, 8px);
+}
+.twpx-one-click-form__form {
+  position: relative;
+  display: grid;
+  grid-template-rows: 18px auto;
+  padding: var(--twpx-block-padding-l, 24px);
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  gap: var(--twpx-block-gap-l, 24px);
+  border-radius: var(--twpx-button-border-radius-m, 8px);
+  background: #FAFAFA;
+}
+.twpx-one-click-form h3 {
+  margin: 0;
+  color: #000;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26.4px; /* 165% */
+}
+.twpx-one-click-form__form-wrapper {
+  display: grid;
+  gap: var(--twpx-block-gap-s, 8px);
+}
+.twpx-one-click-form__consent {
+  color: #000;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 100% */
+}
+.twpx-one-click-form__consent a,
+.twpx-one-click-form__consent a:hover {
+  color: #000;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  text-decoration: underline;
+  -webkit-transition: opacity .3s ease;
+  -o-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+.twpx-one-click-form__consent a:hover {
+  opacity: .7;
+}
+.twpx-one-click-form__form-message {
+  display: grid;
+  gap: var(--twpx-block-gap-s, 8px);
+}
+.twpx-one-click-form__product-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: var(--twpx-block-padding-l, 24px);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  border-radius: var(--twpx-button-border-radius-m, 8px);
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.twpx-one-click-form__product-image {
+  min-height: 254px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.twpx-one-click-form__product-text {
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
+}
+.twpx-one-click-form__product-name {
+  color: #000;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26.4px; /* 165% */
+}
+.twpx-one-click-form__product-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.twpx-one-click-form__product-price span:first-child {
+  color: #000;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26.4px; /* 165% */
+}
+.twpx-one-click-form__product-price span:last-child {
+  color: var(--base-colors-grey, #888);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 100% */
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+@media(max-width: 767px) {
+  .twpx-one-click-form__grid {
+    display: block;
+  }
+  .twpx-one-click-form__wrapper {
+    padding: 32px var(--twpx-form-padding-mobile, 16px);
+  }
+  .twpx-one-click-form__buttons {
+    display: grid;
+    gap: var(--body-buttons-vertical-gap, 16px);
+  }
+  .twpx-one-click-form__buttons .vue-button:nth-child(1) {
+    width: auto;
+    padding: var(--8, 8px) var(--16, 16px);
+    font-size: 12px;
+    height: var(--twpx-button-small, 32px);
+    border-radius: 4px;
+  }
+  .twpx-one-click-form h3 {
+    font-size: 14px;
+  }
+}
