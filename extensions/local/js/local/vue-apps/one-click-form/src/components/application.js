@@ -144,7 +144,9 @@ export const Application = {
       'changeError',
       'changeFormError',
       'changeProductError',
-      'changeFormMessage'
+      'changeFormMessage',
+      'setTimeoutMethod',
+      'clearTimeoutMethod'
     ]),
     ...mapActions(controlsStore, [
       'changeControls',
@@ -165,6 +167,7 @@ export const Application = {
         .then(
           response => {
             this.changeFormLoading(false);
+            this.setTimeoutMethod();
             if (response?.status === 'success') {
               this.changeFormError('');
               if (response?.data?.message) {
@@ -174,11 +177,23 @@ export const Application = {
           },
           response => {
             this.changeFormLoading(false);
+            this.setTimeoutMethod();
             this.changeFormMessage('');
             this.changeFormError(response.errors[0].message);
           }
         )
     },
+    clickButtonSuccess() {
+      this.clearTimeoutMethod();
+      this.changeStateWatcher();
+      setTimeout(() => {
+        this.changeFormMessage('');
+      }, 1000);
+    },
+    clickButtonError() {
+      this.clearTimeoutMethod();
+      this.changeFormError('');
+    }
   },
   mounted() {
     this.runGetForm()

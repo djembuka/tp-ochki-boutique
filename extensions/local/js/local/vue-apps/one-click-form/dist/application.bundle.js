@@ -172,7 +172,8 @@
         formError: '',
         productError: '',
         formMessage: '',
-        height: 'auto'
+        height: 'auto',
+        timeoutId: null
       };
     },
     actions: {
@@ -215,8 +216,19 @@
       setHeight: function setHeight() {
         this.height = document.querySelector("#".concat(dataStore().id, " .twpx-one-click-form__form")).clientHeight;
       },
-      runGetForm: function runGetForm() {
+      setTimeoutMethod: function setTimeoutMethod() {
         var _this = this;
+        this.timeoutId = setTimeout(function () {
+          _this.changeFormMessage('');
+          _this.changeFormError('');
+          _this.changeStateWatcher();
+        }, 3000);
+      },
+      clearTimeoutMethod: function clearTimeoutMethod() {
+        clearTimeout(this.timeoutId);
+      },
+      runGetForm: function runGetForm() {
+        var _this2 = this;
         this.error = '';
         this.loading = true;
         var d = dataStore();
@@ -276,17 +288,17 @@
         })
         //then поместить в вызов функции в application.js
         .then(function (response) {
-          _this.loading = false;
+          _this2.loading = false;
           if (response.status === 'success') {
-            _this.changeError('');
+            _this2.changeError('');
             controlsStore().changeControls(response.data[0].controls);
           } else {
-            _this.changeError(response.errors[0].message);
+            _this2.changeError(response.errors[0].message);
           }
         }, function (response) {
-          _this.loading = false;
+          _this2.loading = false;
           if (response && response.errors.length) {
-            _this.changeError(response.errors[0].message);
+            _this2.changeError(response.errors[0].message);
           }
         });
       },
@@ -303,6 +315,7 @@
                 status: 'success',
                 data: {
                   product: {
+                    id: '123',
                     name: 'McQueen AM 0375s 001 53',
                     price: '27 500 руб.',
                     oldPrice: '27 500 руб.',
@@ -366,7 +379,7 @@
         });
       },
       runSendForm: function runSendForm() {
-        var _this2 = this;
+        var _this3 = this;
         this.error = '';
         this.changeFormLoading(true);
         this.setHeight();
@@ -376,6 +389,7 @@
         Object.keys(d.data).forEach(function (key) {
           formData.append(key, d.data[key]);
         });
+        formData.append('id', this.product.id);
         return new Promise(function (resolve, reject) {
           var response = {
             status: 'success',
@@ -384,7 +398,7 @@
             }
           };
 
-          // response = {
+          // let response = {
           //   status: 'error',
           //   data: {},
           //   errors: [
@@ -405,17 +419,17 @@
         })
         //then поместить в вызов функции в application.js
         .then(function (response) {
-          _this2.changeFormLoading(false);
+          _this3.changeFormLoading(false);
           if (response.status === 'success') {
-            _this2.changeError('');
+            _this3.changeError('');
             controlsStore().changeControls(response.data[0].controls);
           } else {
-            _this2.changeError(response.errors[0].message);
+            _this3.changeError(response.errors[0].message);
           }
         }, function (response) {
-          _this2.changeFormLoading(false);
+          _this3.changeFormLoading(false);
           if (response && response.errors.length) {
-            _this2.changeError(response.errors[0].message);
+            _this3.changeError(response.errors[0].message);
           }
         });
       }
@@ -460,7 +474,7 @@
         return "height: ".concat(this.height, "px;");
       }
     }),
-    methods: _objectSpread(_objectSpread(_objectSpread({}, ui_vue3_pinia.mapActions(formStore, ['runGetForm', 'runGetProduct', 'runSendForm', 'changeStateWatcher', 'changeLoading', 'changeProductLoading', 'changeFormLoading', 'changeForm', 'changeProduct', 'changeError', 'changeFormError', 'changeProductError', 'changeFormMessage'])), ui_vue3_pinia.mapActions(controlsStore, ['changeControls', 'changeControlValue'])), {}, {
+    methods: _objectSpread(_objectSpread(_objectSpread({}, ui_vue3_pinia.mapActions(formStore, ['runGetForm', 'runGetProduct', 'runSendForm', 'changeStateWatcher', 'changeLoading', 'changeProductLoading', 'changeFormLoading', 'changeForm', 'changeProduct', 'changeError', 'changeFormError', 'changeProductError', 'changeFormMessage', 'setTimeoutMethod', 'clearTimeoutMethod'])), ui_vue3_pinia.mapActions(controlsStore, ['changeControls', 'changeControlValue'])), {}, {
       input: function input(args) {
         this.changeControlValue(args);
       },
@@ -479,6 +493,7 @@
         var _this = this;
         this.runSendForm().then(function (response) {
           _this.changeFormLoading(false);
+          _this.setTimeoutMethod();
           if ((response === null || response === void 0 ? void 0 : response.status) === 'success') {
             var _response$data;
             _this.changeFormError('');
@@ -488,21 +503,34 @@
           }
         }, function (response) {
           _this.changeFormLoading(false);
+          _this.setTimeoutMethod();
           _this.changeFormMessage('');
           _this.changeFormError(response.errors[0].message);
         });
+      },
+      clickButtonSuccess: function clickButtonSuccess() {
+        var _this2 = this;
+        this.clearTimeoutMethod();
+        this.changeStateWatcher();
+        setTimeout(function () {
+          _this2.changeFormMessage('');
+        }, 1000);
+      },
+      clickButtonError: function clickButtonError() {
+        this.clearTimeoutMethod();
+        this.changeFormError('');
       }
     }),
     mounted: function mounted() {
-      var _this2 = this;
+      var _this3 = this;
       this.runGetForm().then(function (response) {
-        _this2.changeLoading(false);
-        _this2.changeError('');
-        _this2.changeForm(response.data);
-        _this2.changeControls(response.data.controls);
+        _this3.changeLoading(false);
+        _this3.changeError('');
+        _this3.changeForm(response.data);
+        _this3.changeControls(response.data.controls);
       }, function (response) {
-        _this2.changeLoading(false);
-        _this2.changeError(response.errors[0].message);
+        _this3.changeLoading(false);
+        _this3.changeError(response.errors[0].message);
       });
     }
   };
@@ -591,5 +619,4 @@
 
   exports.OneClickForm = OneClickForm;
 
-}((this.BX = this.BX || {}),BX,BX.Controls,BX.AAS,BX.Loaders,BX.AAS,BX.Modals,BX));
-//# sourceMappingURL=application.bundle.js.map
+}((this.BX = this.BX || {}),BX.Vue3,BX.Controls,BX.AAS,BX.Loaders,BX.AAS,BX.Modals,BX.Vue3.Pinia));//# sourceMappingURL=application.bundle.js.map

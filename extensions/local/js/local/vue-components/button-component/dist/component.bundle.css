@@ -50,7 +50,9 @@ button:not(:disabled) {
 }
 @media (max-width: 767px) {
   .vue-button {
-    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     width: auto;
   }
 }

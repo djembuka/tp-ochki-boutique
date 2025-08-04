@@ -15,6 +15,7 @@ export const formStore = defineStore('form', {
     productError: '',
     formMessage: '',
     height: 'auto',
+    timeoutId: null
   }),
   actions: {
     changeStateWatcher() {
@@ -55,6 +56,16 @@ export const formStore = defineStore('form', {
     },
     setHeight() {
       this.height = document.querySelector(`#${dataStore().id} .twpx-one-click-form__form`).clientHeight;
+    },
+    setTimeoutMethod() {
+      this.timeoutId = setTimeout(() => {
+        this.changeFormMessage('');
+        this.changeFormError('');
+        this.changeStateWatcher();
+      }, 3000);
+    },
+    clearTimeoutMethod() {
+      clearTimeout(this.timeoutId);
     },
     runGetForm() {
       this.error = '';
@@ -153,6 +164,7 @@ export const formStore = defineStore('form', {
               status: 'success',
               data: {
                 product: {
+                  id: '123',
                   name: 'McQueen AM 0375s 001 53',
                   price: '27 500 руб.',
                   oldPrice: '27 500 руб.',
@@ -230,6 +242,8 @@ export const formStore = defineStore('form', {
         formData.append(key, d.data[key]);
       });
 
+      formData.append('id', this.product.id);
+
       return new Promise((resolve, reject) => {
         let response = {
           status: 'success',
@@ -238,7 +252,7 @@ export const formStore = defineStore('form', {
           }
         };
 
-        // response = {
+        // let response = {
         //   status: 'error',
         //   data: {},
         //   errors: [

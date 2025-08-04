@@ -1,3 +1,8 @@
+.twpx-modal-any-content,
+.twpx-modal-any-content * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
 .twpx-modal-any-content {
   position: fixed;
   top: 0;
@@ -96,4 +101,15 @@
 }
 .twpx-modal-any-content-buttons .vue-button {
   width: 256px;
+}
+@media(max-width: 767px) {
+  .twpx-modal-any-content-body {
+    max-height: calc(100vh - 16px * 2);
+    height: 100vh;
+    padding-right: calc(16px - 5px);
+  }
+  .twpx-modal-any-content-container {
+    max-height: 100%;
+    height: 100%;
+  }
 }

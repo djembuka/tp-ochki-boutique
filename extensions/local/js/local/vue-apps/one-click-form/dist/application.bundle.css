@@ -1,5 +1,12 @@
-.twpx-one-click-form .vue-loader-circle {
+.twpx-one-click-form__product .vue-loader-circle {
   height: 400px;
+}
+.twpx-one-click-form__form .vue-loader-circle {
+  height: calc(400px - 42px);
+  margin-bottom: 42px;
+}
+.twpx-one-click-form .twpx-one-click-form__product .vue-loader-circle {
+  height: 100%;
 }
 .twpx-one-click-form .twpx-modal-any-content-close {
   top: calc(16px + 24px);
@@ -167,23 +174,22 @@
 }
 @media(max-width: 767px) {
   .twpx-one-click-form__grid {
-    display: block;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
-  .twpx-one-click-form__wrapper {
-    padding: 32px var(--twpx-form-padding-mobile, 16px);
+  .twpx-one-click-form__product-wrapper {
+    padding: var(--twpx-form-padding-mobile, 16px);
+    gap: 8px;
   }
-  .twpx-one-click-form__buttons {
-    display: grid;
-    gap: var(--body-buttons-vertical-gap, 16px);
+  .twpx-one-click-form__product-image {
+    min-height: 0;
   }
-  .twpx-one-click-form__buttons .vue-button:nth-child(1) {
-    width: auto;
-    padding: var(--8, 8px) var(--16, 16px);
-    font-size: 12px;
-    height: var(--twpx-button-small, 32px);
-    border-radius: 4px;
+  .twpx-one-click-form__form {
+    padding: 0;
+    background-color: transparent;
   }
-  .twpx-one-click-form h3 {
-    font-size: 14px;
+  .twpx-one-click-form .twpx-modal-any-content-close {
+    top: 16px;
+    right: 16px;
   }
 }
