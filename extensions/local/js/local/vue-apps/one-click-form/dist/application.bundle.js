@@ -159,6 +159,8 @@
     }
   });
 
+  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
   var formStore = ui_vue3_pinia.defineStore('form', {
     state: function state() {
       return {
@@ -222,84 +224,74 @@
           _this.changeFormMessage('');
           _this.changeFormError('');
           _this.changeStateWatcher();
-        }, 3000);
+        }, 5000);
       },
       clearTimeoutMethod: function clearTimeoutMethod() {
         clearTimeout(this.timeoutId);
       },
       runGetForm: function runGetForm() {
-        var _this2 = this;
         this.error = '';
         this.loading = true;
         var d = dataStore();
-        return new Promise(function (resolve, reject) {
-          var response = {
-            status: 'success',
-            data: {
-              heading: 'Заказ в 1 клик',
-              controls: [{
-                "id": "id1",
-                "property": "text",
-                "name": "NAME",
-                "label": "Как вас зовут",
-                "value": "",
-                "required": true,
-                "disabled": false
-              }, {
-                "id": "id2",
-                "property": "tel",
-                "name": "PHONE",
-                "label": "Ваш телефон",
-                "value": "",
-                "required": true,
-                "disabled": false
-              }, {
-                "id": "id1-1",
-                "property": "textarea",
-                "name": "MESSAGE",
-                "label": "Сообщение",
-                "value": "",
-                "required": false,
-                "disabled": false
-              }],
-              button: 'Заказать',
-              consent: 'Нажимая кнопку, вы соглашаетесь с <a href="">политикой конфиденциальности</a> и даете <a href="">согласие на обработку</a> персональных данных.'
-            }
-          };
 
-          // response = {
-          //   status: 'error',
-          //   data: {},
-          //   errors: [
-          //     {
-          //       message: 'getForm error'
-          //     }
-          //   ]
-          // };
+        // return new Promise((resolve, reject) => {
+        // let response = {
+        //   status: 'success',
+        //   data: {
+        //     heading: 'Заказ в 1 клик',
+        //     controls: [
+        //       {
+        //         "id": "id1",
+        //         "property": "text",
+        //         "name": "NAME",
+        //         "label": "Как вас зовут",
+        //         "value": "",
+        //         "required": true,
+        //         "disabled": false
+        //       },
+        //       {
+        //         "id": "id2",
+        //         "property": "tel",
+        //         "name": "PHONE",
+        //         "label": "Ваш телефон",
+        //         "value": "",
+        //         "required": true,
+        //         "disabled": false
+        //       },
+        //       {
+        //         "id": "id1-1",
+        //         "property": "textarea",
+        //         "name": "MESSAGE",
+        //         "label": "Сообщение",
+        //         "value": "",
+        //         "required": false,
+        //         "disabled": false
+        //       }
+        //     ],
+        //     button: 'Заказать',
+        //     consent: 'Нажимая кнопку, вы соглашаетесь с <a href="">политикой конфиденциальности</a> и даете <a href="">согласие на обработку</a> персональных данных.'
+        //   }
+        // };
 
-          setTimeout(function () {
-            resolve(response);
-            // reject(response);
-          }, 1000);
-        });
+        //   // response = {
+        //   //   status: 'error',
+        //   //   data: {},
+        //   //   errors: [
+        //   //     {
+        //   //       message: 'getForm error'
+        //   //     }
+        //   //   ]
+        //   // };
+
+        //   setTimeout(() => {
+        //     resolve(response);
+        //     // reject(response);
+        //   }, 1000);
+        // });
+
         return BX.ajax.runComponentAction(d.actions.getForm[0], d.actions.getForm[1], {
           mode: 'class',
           data: d.data
-        })
-        //then поместить в вызов функции в application.js
-        .then(function (response) {
-          _this2.loading = false;
-          if (response.status === 'success') {
-            _this2.changeError('');
-            controlsStore().changeControls(response.data[0].controls);
-          } else {
-            _this2.changeError(response.errors[0].message);
-          }
-        }, function (response) {
-          _this2.loading = false;
-          if (response && response.errors.length) {
-            _this2.changeError(response.errors[0].message);
-          }
         });
       },
       runGetProduct: function runGetProduct(_ref) {
@@ -307,79 +299,86 @@
         this.error = '';
         this.productLoading = true;
         var d = dataStore();
-        return new Promise(function (resolve, reject) {
-          var response = {};
-          switch (id) {
-            case '123':
-              response = {
-                status: 'success',
-                data: {
-                  product: {
-                    id: '123',
-                    name: 'McQueen AM 0375s 001 53',
-                    price: '27 500 руб.',
-                    oldPrice: '27 500 руб.',
-                    img: '/upload/resize_cache/iblock/ffb/270_230_1/ffbbc1c997bd4a285a820a57cd40f047.jpg'
-                  }
-                }
-              };
-              break;
-            case '456':
-              response = {
-                status: 'success',
-                data: {
-                  product: {
-                    name: 'AM 0467S 001 56',
-                    price: '37 200 руб.',
-                    img: '/upload/resize_cache/iblock/ec1/vis7nwb42a1scabzkmds8nnqww9dqybm/270_230_1/fcf3cf984f0211ef923c0050568900f8_843ba2927db511ef9c020050568900f8.jpg'
-                  }
-                }
-              };
-              break;
-            case '789':
-              response = {
-                status: 'success',
-                data: {
-                  product: {
-                    name: 'RB 4387 710/73 56',
-                    price: '21 000 руб.',
-                    img: '/upload/resize_cache/iblock/35c/270_230_1/35ce5012c2ad478f6c9c73ce7dbcb2fa.jpg'
-                  }
-                }
-              };
-              break;
-            case '741':
-              response = {
-                status: 'success',
-                data: {
-                  product: {
-                    name: 'FKSHMxPye Ghostriders Storm Black 53',
-                    price: '19 500 руб.',
-                    img: '/upload/resize_cache/iblock/005/8u6oagq9q32cmfzii10qv31j0jasforw/270_230_1/3a808b6ecf0e11ee95720050568900f8_2250e44ae6be11ee92420050568900f8.jpg'
-                  }
-                }
-              };
-              break;
-          }
 
-          // response = {
-          //   status: 'error',
-          //   data: {},
-          //   errors: [
-          //     {
-          //       message: 'getProduct error'
-          //     }
-          //   ]
-          // };
+        // return new Promise((resolve, reject) => {
+        //   let response = {};
 
-          setTimeout(function () {
-            resolve(response);
-            // reject(response);
-          }, 2000);
+        //   switch(id) {
+        //     case '123':
+        //       response = {
+        //         status: 'success',
+        //         data: {
+        //           product: {
+        //             id: '123',
+        //             name: 'McQueen AM 0375s 001 53',
+        //             price: '27 500 руб.',
+        //             oldPrice: '27 500 руб.',
+        //             img: '/upload/resize_cache/iblock/ffb/270_230_1/ffbbc1c997bd4a285a820a57cd40f047.jpg'
+        //           }
+        //         }
+        //       };
+        //       break;
+        //     case '456':
+        //       response = {
+        //         status: 'success',
+        //         data: {
+        //           product: {
+        //             name: 'AM 0467S 001 56',
+        //             price: '37 200 руб.',
+        //             img: '/upload/resize_cache/iblock/ec1/vis7nwb42a1scabzkmds8nnqww9dqybm/270_230_1/fcf3cf984f0211ef923c0050568900f8_843ba2927db511ef9c020050568900f8.jpg'
+        //           }
+        //         }
+        //       };
+        //       break;
+        //     case '789':
+        //       response = {
+        //         status: 'success',
+        //         data: {
+        //           product: {
+        //             name: 'RB 4387 710/73 56',
+        //             price: '21 000 руб.',
+        //             img: '/upload/resize_cache/iblock/35c/270_230_1/35ce5012c2ad478f6c9c73ce7dbcb2fa.jpg'
+        //           }
+        //         }
+        //       };
+        //       break;
+        //     case '741':
+        //       response = {
+        //         status: 'success',
+        //         data: {
+        //           product: {
+        //             name: 'FKSHMxPye Ghostriders Storm Black 53',
+        //             price: '19 500 руб.',
+        //             img: '/upload/resize_cache/iblock/005/8u6oagq9q32cmfzii10qv31j0jasforw/270_230_1/3a808b6ecf0e11ee95720050568900f8_2250e44ae6be11ee92420050568900f8.jpg'
+        //           }
+        //         }
+        //       };
+        //       break;
+        //   }
+
+        //   // response = {
+        //   //   status: 'error',
+        //   //   data: {},
+        //   //   errors: [
+        //   //     {
+        //   //       message: 'getProduct error'
+        //   //     }
+        //   //   ]
+        //   // };
+
+        //   setTimeout(() => {
+        //     resolve(response);
+        //     // reject(response);
+        //   }, 2000);
+        // });
+        return BX.ajax.runComponentAction(d.actions.getProduct[0], d.actions.getProduct[1], {
+          mode: 'class',
+          data: _objectSpread(_objectSpread({}, d.data), {}, {
+            id: id
+          })
         });
       },
       runSendForm: function runSendForm() {
-        var _this3 = this;
         this.error = '';
         this.changeFormLoading(true);
         this.setHeight();
@@ -390,54 +389,41 @@
           formData.append(key, d.data[key]);
         });
         formData.append('id', this.product.id);
-        return new Promise(function (resolve, reject) {
-          var response = {
-            status: 'success',
-            data: {
-              message: 'Спасибо! Ваш запрос успешно отправлен. Наш специалист свяжется с вами в ближайшее время.'
-            }
-          };
 
-          // let response = {
-          //   status: 'error',
-          //   data: {},
-          //   errors: [
-          //     {
-          //       message: 'Что-то пошло не так. Пожалуйста, попробуйте отправить форму ещё раз!'
-          //     }
-          //   ]
-          // };
+        // return new Promise((resolve, reject) => {
+        //   let response = {
+        //     status: 'success',
+        //     data: {
+        //       message: 'Спасибо! Ваш запрос успешно отправлен. Наш специалист свяжется с вами в ближайшее время.',
+        //     }
+        //   };
 
-          setTimeout(function () {
-            resolve(response);
-            // reject(response);
-          }, 1000);
-        });
-        return BX.ajax.runComponentAction(d.actions.getForm[0], d.actions.getForm[1], {
+        // let response = {
+        //   status: 'error',
+        //   data: {},
+        //   errors: [
+        //     {
+        //       message: 'Что-то пошло не так. Пожалуйста, попробуйте отправить форму ещё раз!'
+        //     }
+        //   ]
+        // };
+
+        //   setTimeout(() => {
+        //     resolve(response);
+        //     // reject(response);
+        //   }, 1000);
+        // });
+
+        return BX.ajax.runComponentAction(d.actions.sendForm[0], d.actions.sendForm[1], {
           mode: 'class',
           data: formData
-        })
-        //then поместить в вызов функции в application.js
-        .then(function (response) {
-          _this3.changeFormLoading(false);
-          if (response.status === 'success') {
-            _this3.changeError('');
-            controlsStore().changeControls(response.data[0].controls);
-          } else {
-            _this3.changeError(response.errors[0].message);
-          }
-        }, function (response) {
-          _this3.changeFormLoading(false);
-          if (response && response.errors.length) {
-            _this3.changeError(response.errors[0].message);
-          }
         });
       }
     }
   });
 
-  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
   var Application = {
     data: function data() {
       return {};
@@ -451,8 +437,8 @@
       CloseIcon: CloseIcon
     },
     // language=Vue
-    template: "\n  <div class=\"twpx-one-click-form\" :id=\"id\">\n\n    <ModalAnyContent :stateWatcher=\"stateWatcher\">\n\n      <LoaderCircle :show=\"loading\" />\n\n      <MessageComponent v-if=\"error\" type=\"error\" size=\"small\" :message=\"error\" />\n\n      <div class=\"twpx-one-click-form__grid\" v-if=\"!loading && !error\">\n        <div class=\"twpx-one-click-form__product\">\n\n          <LoaderCircle :show=\"productLoading\" />\n\n          <MessageComponent v-if=\"productError\" type=\"error\" size=\"small\" :message=\"productError\" />\n\n          <div class=\"twpx-one-click-form__product-wrapper\" v-if=\"!productLoading && !productError\"  >\n            <div v-if=\"product.img\" class=\"twpx-one-click-form__product-image\">\n              <img :src=\"product.img\" :alt=\"product.name\"\n            </div>\n            <div class=\"twpx-one-click-form__product-text\" v-if=\"product.name || product.price || product.oldPrice\">\n              <div v-if=\"product.name\" class=\"twpx-one-click-form__product-name\">{{ product.name }}</div>\n              <div v-if=\"product.price || product.oldPrice\" class=\"twpx-one-click-form__product-price\">\n                <span v-if=\"product.price\">{{ product.price }}</span>\n                <span v-if=\"product.oldPrice\">{{ product.oldPrice }}</span>\n              </div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"twpx-one-click-form__form\" :style=\"formStyle\">\n\n          <div class=\"twpx-one-click-form__close\"></div>\n\n          <LoaderCircle :show=\"formLoading\" />\n\n          <div v-if=\"!formLoading && !isMessage\" class=\"twpx-one-click-form__form__content\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <form action=\"\">\n              <div class=\"twpx-one-click-form__form-wrapper\">\n                <ControlChoice  v-for=\"control in controls\" :key=\"control.id\" :control=\"control\" @input=\"input\"></ControlChoice>\n                <ButtonComponent v-if=\"form.button\" :text=\"form.button\" :props=\"buttonProps\" @clickButton=\"clickButton\" />\n              </div>\n            </form>\n            <div v-if=\"form.consent\" v-html=\"form.consent\" class=\"twpx-one-click-form__consent\"></div>\n          </div>\n\n          <div v-if=\"formError\" class=\"twpx-one-click-form__form-message\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <MessageComponent type=\"error\" size=\"small\" :message=\"formError\" />\n            <ButtonComponent :text=\"lang.buttonError\" :props=\"['primary', 'medium', 'wide']\" @clickButton=\"clickButtonError\" />\n          </div>\n\n          <div v-if=\"formMessage\" class=\"twpx-one-click-form__form-message\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <MessageComponent v-if=\"formMessage\" type=\"success\" size=\"small\" :message=\"formMessage\" />\n            <ButtonComponent :text=\"lang.buttonSuccess\" :props=\"['primary', 'medium', 'wide']\" @clickButton=\"clickButtonSuccess\" />\n          </div>\n\n        </div>\n      </div>\n    </ModalAnyContent>\n\n  </div>\n\t",
-    computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, ui_vue3_pinia.mapState(dataStore, ['lang', 'id'])), ui_vue3_pinia.mapState(formStore, ['loading', 'productLoading', 'formLoading', 'form', 'product', 'stateWatcher', 'error', 'formError', 'productError', 'formMessage', 'height'])), ui_vue3_pinia.mapState(controlsStore, ['controls'])), {}, {
+    template: "\n  <div class=\"twpx-one-click-form\" :id=\"id\">\n\n    <ModalAnyContent :stateWatcher=\"stateWatcher\">\n\n      <LoaderCircle :show=\"loading\" />\n\n      <MessageComponent v-if=\"error\" type=\"error\" size=\"small\" :message=\"error\" />\n\n      <div class=\"twpx-one-click-form__grid\" v-if=\"!loading && !error\">\n        <div class=\"twpx-one-click-form__product\">\n\n          <LoaderCircle :show=\"productLoading\" />\n\n          <MessageComponent v-if=\"productError\" type=\"error\" size=\"small\" :message=\"productError\" />\n\n          <div class=\"twpx-one-click-form__product-wrapper\" v-if=\"!productLoading && !productError\"  >\n            <div v-if=\"product.img\" class=\"twpx-one-click-form__product-image\">\n              <img :src=\"product.img\" :alt=\"product.name\"\n            </div>\n            <div class=\"twpx-one-click-form__product-text\" v-if=\"product.name || product.price || product.oldPrice\">\n              <div v-if=\"product.name\" class=\"twpx-one-click-form__product-name\">{{ product.name }}</div>\n              <div v-if=\"product.price || product.oldPrice\" class=\"twpx-one-click-form__product-price\">\n                <span class=\"twpx-one-click-form__product-price__price\" v-if=\"product.price\" v-html=\"product.price\"></span>\n                <span class=\"twpx-one-click-form__product-price__old-price\" v-if=\"product.oldPrice\" v-html=\"product.oldPrice\"></span>\n              </div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"twpx-one-click-form__form\" :style=\"formStyle\">\n\n          <div class=\"twpx-one-click-form__close\"></div>\n\n          <LoaderCircle :show=\"formLoading\" />\n\n          <div v-if=\"!formLoading && !isMessage\" class=\"twpx-one-click-form__form__content\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <form action=\"\">\n              <div class=\"twpx-one-click-form__form-wrapper\">\n                <ControlChoice  v-for=\"control in controls\" :key=\"control.id\" :control=\"control\" @input=\"input\"></ControlChoice>\n                <ButtonComponent v-if=\"form.button\" :text=\"form.button\" :props=\"buttonProps\" @clickButton=\"clickButton\" />\n              </div>\n            </form>\n            <div v-if=\"form.consent\" v-html=\"form.consent\" class=\"twpx-one-click-form__consent\"></div>\n          </div>\n\n          <div v-if=\"formError\" class=\"twpx-one-click-form__form-message\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <MessageComponent type=\"error\" size=\"small\" :message=\"formError\" />\n            <ButtonComponent :text=\"lang.buttonError\" :props=\"['primary', 'medium', 'wide']\" @clickButton=\"clickButtonError\" />\n          </div>\n\n          <div v-if=\"formMessage\" class=\"twpx-one-click-form__form-message\">\n            <h3 v-if=\"form.heading\">{{ form.heading }}</h3>\n            <MessageComponent v-if=\"formMessage\" type=\"success\" size=\"small\" :message=\"formMessage\" />\n            <ButtonComponent :text=\"lang.buttonSuccess\" :props=\"['primary', 'medium', 'wide']\" @clickButton=\"clickButtonSuccess\" />\n          </div>\n\n        </div>\n      </div>\n    </ModalAnyContent>\n\n  </div>\n\t",
+    computed: _objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1({}, ui_vue3_pinia.mapState(dataStore, ['lang', 'id'])), ui_vue3_pinia.mapState(formStore, ['loading', 'productLoading', 'formLoading', 'form', 'product', 'stateWatcher', 'error', 'formError', 'productError', 'formMessage', 'height'])), ui_vue3_pinia.mapState(controlsStore, ['controls'])), {}, {
       buttonProps: function buttonProps() {
         var result = new Set();
         result.add('wide');
@@ -474,7 +460,7 @@
         return "height: ".concat(this.height, "px;");
       }
     }),
-    methods: _objectSpread(_objectSpread(_objectSpread({}, ui_vue3_pinia.mapActions(formStore, ['runGetForm', 'runGetProduct', 'runSendForm', 'changeStateWatcher', 'changeLoading', 'changeProductLoading', 'changeFormLoading', 'changeForm', 'changeProduct', 'changeError', 'changeFormError', 'changeProductError', 'changeFormMessage', 'setTimeoutMethod', 'clearTimeoutMethod'])), ui_vue3_pinia.mapActions(controlsStore, ['changeControls', 'changeControlValue'])), {}, {
+    methods: _objectSpread$1(_objectSpread$1(_objectSpread$1({}, ui_vue3_pinia.mapActions(formStore, ['runGetForm', 'runGetProduct', 'runSendForm', 'changeStateWatcher', 'changeLoading', 'changeProductLoading', 'changeFormLoading', 'changeForm', 'changeProduct', 'changeError', 'changeFormError', 'changeProductError', 'changeFormMessage', 'setTimeoutMethod', 'clearTimeoutMethod'])), ui_vue3_pinia.mapActions(controlsStore, ['changeControls', 'changeControlValue'])), {}, {
       input: function input(args) {
         this.changeControlValue(args);
       },
@@ -535,8 +521,8 @@
     }
   };
 
-  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$2(Object(source), !0).forEach(function (key) { babelHelpers.defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
   function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
   function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
   var _store = /*#__PURE__*/new WeakMap();
@@ -571,7 +557,7 @@
             Application: Application
           },
           template: '<Application/>',
-          methods: _objectSpread$1({}, ui_vue3_pinia.mapActions(formStore, ['changeStateWatcher', 'runGetProduct'])),
+          methods: _objectSpread$2({}, ui_vue3_pinia.mapActions(formStore, ['changeStateWatcher', 'runGetProduct'])),
           beforeMount: function beforeMount() {
             dataStore().data = self.options.data || {};
             dataStore().lang = self.options.lang || {};

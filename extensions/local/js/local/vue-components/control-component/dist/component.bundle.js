@@ -80,5 +80,5 @@ this.BX = this.BX || {};
 
   exports.ControlComponent = ControlComponent;
 
-}((this.BX.Controls = this.BX.Controls || {}),BX,BX.Controls,BX.Controls,BX,BX.Controls,BX.Controls,BX,BX,BX,BX,BX,BX,BX,BX,BX,BX,BX.Controls,BX,BX));
+}((this.BX.Controls = this.BX.Controls || {}),BX.Controls,BX.Controls,BX.Controls,BX,BX.Controls,BX.Controls,BX,BX,BX,BX,BX,BX,BX,BX,BX,BX,BX.Controls,BX,BX));
 //# sourceMappingURL=component.bundle.js.map

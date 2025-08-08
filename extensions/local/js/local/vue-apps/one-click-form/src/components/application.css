@@ -116,7 +116,7 @@
   align-items: center;
   gap: 10px;
 }
-.twpx-one-click-form__product-price span:first-child {
+.twpx-one-click-form__product-price__price {
   color: #000;
   text-align: center;
   font-family: Roboto;
@@ -125,7 +125,7 @@
   font-weight: 700;
   line-height: 26.4px; /* 165% */
 }
-.twpx-one-click-form__product-price span:last-child {
+.twpx-one-click-form__product-price__old-price {
   color: var(--base-colors-grey, #888);
   text-align: center;
   font-family: Roboto;

@@ -49,8 +49,8 @@ export const Application = {
             <div class="twpx-one-click-form__product-text" v-if="product.name || product.price || product.oldPrice">
               <div v-if="product.name" class="twpx-one-click-form__product-name">{{ product.name }}</div>
               <div v-if="product.price || product.oldPrice" class="twpx-one-click-form__product-price">
-                <span v-if="product.price">{{ product.price }}</span>
-                <span v-if="product.oldPrice">{{ product.oldPrice }}</span>
+                <span class="twpx-one-click-form__product-price__price" v-if="product.price" v-html="product.price"></span>
+                <span class="twpx-one-click-form__product-price__old-price" v-if="product.oldPrice" v-html="product.oldPrice"></span>
               </div>
             </div>
           </div>
