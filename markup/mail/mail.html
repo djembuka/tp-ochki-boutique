@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+		.ob-mail {
+            background-color: #f9f9f9;
+		}
+		.ob-mail-container,
+        .ob-mail-container * {
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            color: #000;
+        }
+
+        .ob-mail-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+			
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 32px;
+			max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .ob-mail-header {
+            background-color: #fff;
+            padding: 16px 20px;
+            width: 100%;
+        }
+
+        .ob-mail-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .ob-mail-logo-image {
+            width: 170px;
+            height: 84px;
+        }
+
+        .ob-mail-menu-block {
+            display: flex;
+            padding: 8px;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ob-mail-link-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ob-mail-link-content {
+            color: #000;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .ob-mail-content-wrapper {
+            background-color: #fff;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .ob-mail-fluid-image {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .ob-mail-fluid-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .ob-mail-status-wrapper {
+            background-color: #f9f9f9;
+            padding: 16px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .ob-mail-text-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+			margin-bottom: 24px;
+        }
+
+        .ob-mail-order-wrapper {
+            width: 100%;
+        }
+
+        .ob-mail-header-wrapper {
+            padding: 16px 0;
+            display: flex;
+        }
+		
+		.ob-mail-header-wrapper strong {
+			font-weight: 500;
+		}
+
+        .ob-mail-order-item {
+            border-top: 1px solid #e8e9ea;
+            padding: 8px 0;
+            margin-bottom: 0;
+        }
+
+        .ob-mail-order-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .ob-mail-add-item {
+            display: flex;
+            gap: 16px;
+			align-items: center;
+        }
+
+        .ob-mail-image-container {
+            width: 96px;
+            height: 96px;
+            border-radius: 8px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .ob-mail-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ob-mail-description-wrapper {
+            flex: 1;
+            display: flex;
+            gap: 32px;
+			align-items: center;
+        }
+
+        .ob-mail-name-wrapper {
+            flex: 1;
+        }
+
+        .ob-mail-count-price-wrapper {
+            display: flex;
+            gap: 16px;
+        }
+
+        .ob-mail-count {
+            text-align: right;
+        }
+
+        .ob-mail-price-wrapper {
+            padding-left: 16px;
+            text-align: right;
+        }
+
+        .ob-mail-summary-wrapper {
+            border-top: 1px solid #e8e9ea;
+            padding: 16px 0;
+            text-align: right;
+        }
+
+        .ob-mail-info-wrapper {
+            padding: 16px 0;
+        }
+
+        .ob-mail-button-whatsapp {
+            border: 1px solid #4ac53c;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ob-mail-button-account {
+            border: 1px solid #000;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ob-mail-social-block {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+			margin-bottom: 24px;
+        }
+
+        .ob-mail-social-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ob-mail-phone-wrapper {
+            padding: 16px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+			margin-bottom: 24px;
+        }
+
+        .ob-mail-phone-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .ob-mail-condition-wrapper, .ob-mail-resign-wrapper {
+            text-align: center;
+            font-size: 12px;
+			margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .ob-mail-container {
+                padding: 16px;
+            }
+
+            .ob-mail-content-wrapper, .ob-mail-header {
+                padding: 16px;
+            }
+
+            .ob-mail-description-wrapper {
+                flex-direction: column;
+            }
+
+            .ob-mail-count-price-wrapper {
+				width: 100%;
+                justify-content: space-between;
+            }
+			.ob-mail-image-container {
+				width: 100%;
+				height: auto;
+			}
+        }
+
+        @media (max-width: 480px) {
+            .ob-mail-add-item {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .ob-mail-description-wrapper {
+                width: 100%;
+            }
+
+            .ob-mail-menu-block {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+	<div class="ob-mail">
+		<div class="ob-mail-container">
+			<div class="ob-mail-header">
+				<div class="ob-mail-logo">
+					<img src="ochki-boutique-logo.png" alt="" class="ob-mail-logo-image" />
+				</div>
+				<div class="ob-mail-menu-block">
+					<div class="ob-mail-link-wrapper">
+						<a href="#" class="ob-mail-link-content">Солнцезащитные очки</a>
+					</div>
+					<div class="ob-mail-link-wrapper">
+						<a href="#" class="ob-mail-link-content">Оправы</a>
+					</div>
+					<div class="ob-mail-link-wrapper">
+						<a href="#" class="ob-mail-link-content">Аксессуары</a>
+					</div>
+					<div class="ob-mail-link-wrapper">
+						<a href="#" class="ob-mail-link-content">Подарочные сертификаты</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="ob-mail-content-wrapper">
+				<div class="ob-mail-fluid-image">
+					<img src="ochki-boutique-promo.png" alt="Promotional image">
+				</div>
+
+				<div class="ob-mail-status-wrapper">
+					<div class="ob-mail-basket-icon">
+						<img src="basket-icon.png" alt="" />
+					</div>
+					<div class="ob-mail-text-wrapper">
+						<div class="ob-mail-status-text">
+							Здравствуйте, #ORDER_USER#,<br>
+							Ваш заказ номер #ORDER_ID# от #ORDER_DATE# принят.
+						</div>
+						<div class="ob-mail-price-text">
+							Стоимость заказа: <b>#PRICE#</b>.
+						</div>
+					</div>
+				</div>
+
+				<div class="ob-mail-order-wrapper">
+					<div class="ob-mail-header-wrapper">
+						<strong>Состав заказа:</strong>
+					</div>
+					
+					<div class="ob-mail-order-item">
+						<div class="ob-mail-add-item">
+							<div class="ob-mail-image-container">
+								<img src="ochki-boutique-product.png" alt="Alexander McQueen sunglasses">
+							</div>
+							<div class="ob-mail-description-wrapper">
+								<div class="ob-mail-name-wrapper">
+									Солнцезащитные очки Alexander McQueen AM 0467S 001 56
+								</div>
+								<div class="ob-mail-count-price-wrapper">
+									<div class="ob-mail-count">1</div>
+									<div class="ob-mail-price-wrapper">24 000 рублей</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="ob-mail-order-item">
+						<div class="ob-mail-add-item">
+							<div class="ob-mail-image-container">
+								<img src="ochki-boutique-product.png" alt="Gucci sunglasses">
+							</div>
+							<div class="ob-mail-description-wrapper">
+								<div class="ob-mail-name-wrapper">
+									Солнцезащитные очки Gucci GG 1819S 001 57
+								</div>
+								<div class="ob-mail-count-price-wrapper">
+									<div class="ob-mail-count">1</div>
+									<div class="ob-mail-price-wrapper">33 900 рублей</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="ob-mail-summary-wrapper">
+						Стоимость заказа: #PRICE#
+					</div>
+				</div>
+
+				<div class="ob-mail-info-wrapper">
+					<div class="ob-mail-text-wrapper">
+						Мы скоро свяжемся с вами для подтверждения заказа и согласования доставки. Вы также можете связаться с нами самостоятельно по ссылке ниже:
+						<br><br>
+						Обязательно указывайте номер Вашего заказа – #ORDER_ID#.
+					</div>
+					<div class="ob-mail-button-whatsapp">
+						<img src="wa-icon.png" alt="" />
+						<span>Связаться с менеджером</span>
+					</div>
+				</div>
+
+				<div class="ob-mail-info-wrapper">
+					Управляйте заказом и отслеживайте его статус в личном кабинете. Вход по кнопке ниже:
+				</div>
+
+				<div class="ob-mail-button-account">
+					<img src="person-icon.png" alt="" />
+					<span>Личный кабинет</span>
+				</div>
+
+				<div class="ob-mail-info-wrapper">
+					Благодарим за покупку!<br>
+					С уважением, Очки Бутик
+				</div>
+			</div>
+
+			<div class="ob-mail-bottom-wrapper">
+				<div class="ob-mail-social-block">
+					<div class="ob-mail-social-icon">
+						<img src="tg-icon.png" alt="" />
+					</div>
+					<div class="ob-mail-social-icon">
+						<img src="vk-icon.png" alt="" />
+					</div>
+					<div class="ob-mail-social-icon">
+						<img src="yt-icon.png" alt="" />
+					</div>
+				</div>
+
+				<div class="ob-mail-phone-wrapper">
+					<div class="ob-mail-phone-container">
+						<img src="phone-icon.png" alt="" />
+						<strong>+7 985 928 60 55</strong>
+					</div>
+				</div>
+
+				<div class="ob-mail-condition-wrapper">
+					Вы получили это письмо, поскольку являетесь клиентом магазина «Ochki Boutique» и оставили свой электронный адрес.
+				</div>
+
+				<div class="ob-mail-resign-wrapper">
+					<a href="#" style="color: #000; text-decoration: underline;">Отписаться от рассылки</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
